@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>킹덤 틴즈 16과 - 작은 한 마디의 엄청난 나비효과!</title>
+  <title>킹덤 틴즈 17과 - 출구 없는 방탈출? 완벽한 SOS 버튼! (왕하 18-19장)</title>
+  
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome for Icons -->
@@ -17,15 +18,17 @@
   
   <style>
     body {
-      font-family: 'Pretendard', sans-serif;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
       -webkit-tap-highlight-color: transparent;
       padding-bottom: env(safe-area-inset-bottom);
+      min-height: 100vh;
+      min-height: 100dvh;
     }
     .bible-text {
       font-family: 'Nanum Myeongjo', serif;
-      line-height: 2.1;
+      line-height: 2.0;
     }
-    /* Custom Scrollbar for left panel */
+    /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 6px;
     }
@@ -45,27 +48,24 @@
       text-align: center;
       transition: all 0.2s ease-in-out;
     }
-    /* Fade-in transition for solution animations */
     .fade-solution {
-      animation: fadeIn 0.4s ease-out forwards;
+      animation: fadeIn 0.35s ease-out forwards;
     }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
+      from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
 
-  <!-- Top Navigation Bar Container -->
   <div class="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-sm">
-    
     <!-- Top Brand Header -->
     <header class="px-4 py-2.5 border-b border-slate-100 bg-slate-900 text-white">
       <div class="max-w-7xl mx-auto flex justify-between items-center">
         <div class="flex items-center gap-2">
           <span class="bg-amber-500 text-slate-950 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider">Kingdom Teens</span>
-          <h1 class="text-xs md:text-sm font-bold text-slate-200">16과: 작은 한 마디의 엄청난 나비효과! (왕하 5장)</h1>
+          <h1 class="text-xs md:text-sm font-bold text-slate-200">17과: 출구 없는 방탈출? 완벽한 SOS 버튼! (왕하 18-19장)</h1>
         </div>
         <div class="flex items-center gap-1.5">
           <button onclick="openResetModal()" class="bg-slate-800 hover:bg-rose-950 text-rose-300 text-[11px] px-2.5 py-1 rounded flex items-center gap-1 transition-all" title="진도 초기화">
@@ -78,28 +78,23 @@
       </div>
     </header>
 
-    <!-- Weekly Study Day Selector -->
+    <!-- Weekly Study Day Navigation -->
     <nav class="bg-white px-3 py-2.5 shadow-sm">
       <div class="max-w-7xl mx-auto flex items-center justify-between gap-2 overflow-x-auto">
         <div class="flex items-center gap-1.5 shrink-0">
           <span class="text-xs font-bold text-slate-400 mr-1.5"><i class="fa-solid fa-calendar-day"></i> 주간 묵상:</span>
-          <!-- Mon Button -->
           <button id="day-tab-mon" onclick="switchDay('mon')" class="px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold bg-amber-600 text-white transition-all shadow-sm shrink-0">
             월(1단계)
           </button>
-          <!-- Tue Button -->
           <button id="day-tab-tue" onclick="switchDay('tue')" class="px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all shrink-0">
             화(2단계)
           </button>
-          <!-- Wed Button -->
           <button id="day-tab-wed" onclick="switchDay('wed')" class="px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all shrink-0">
             수(3단계)
           </button>
-          <!-- Thu Button -->
           <button id="day-tab-thu" onclick="switchDay('thu')" class="px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all shrink-0">
             목(4단계)
           </button>
-          <!-- Fri Button -->
           <button id="day-tab-fri" onclick="switchDay('fri')" class="px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all shrink-0">
             금(5단계)
           </button>
@@ -113,7 +108,7 @@
       </div>
     </nav>
 
-    <!-- Mobile Screen Tab Switcher -->
+    <!-- Mobile View Switcher (Reading vs Activity) -->
     <div class="lg:hidden p-3 bg-slate-50/90 backdrop-blur-sm border-t border-slate-100">
       <div class="max-w-md mx-auto bg-white p-1 rounded-xl shadow-inner border border-slate-200/60 flex">
         <button id="tab-btn-reading" onclick="switchMobileTab('reading')" class="flex-1 py-2 text-xs md:text-sm font-bold rounded-lg text-amber-800 bg-amber-50 transition-all flex items-center justify-center gap-1.5">
@@ -124,13 +119,11 @@
         </button>
       </div>
     </div>
-
   </div>
 
-  <!-- Main Grid Layout Container -->
   <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
     
-    <!-- LEFT PANEL: Bible Verses or Editorial Columns -->
+    <!-- LEFT PANEL: Bible Verses & Reading Column -->
     <section id="pane-reading" class="lg:col-span-5 bg-white rounded-2xl border border-slate-200 p-5 md:p-8 flex flex-col shadow-sm max-h-[calc(100vh-160px)] overflow-y-auto block">
       
       <!-- Panel Header Info -->
@@ -138,7 +131,7 @@
         <h2 id="left-panel-title" class="text-base md:text-lg font-extrabold text-slate-900 flex items-center gap-2">
           <i class="fa-solid fa-scroll text-amber-500"></i> 성경 말씀 읽기
         </h2>
-        <span id="left-panel-meta" class="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded font-semibold whitespace-nowrap">열왕기하 5:1-8</span>
+        <span id="left-panel-meta" class="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded font-semibold whitespace-nowrap">열왕기하 18-19장</span>
       </div>
       
       <!-- BIBLE TEXT (Active for Monday, Tuesday, Thursday) -->
@@ -158,7 +151,7 @@
 
     </section>
 
-    <!-- RIGHT PANEL: Activities Area -->
+    <!-- RIGHT PANEL: Activity / Questions Panel -->
     <section id="pane-activity" class="lg:col-span-7 flex flex-col gap-6 hidden lg:flex">
       
       <div id="right-activity-container" class="space-y-6">
@@ -168,8 +161,8 @@
           <div class="bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-2xl p-4 shadow-sm flex items-center justify-between">
             <div>
               <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold uppercase">STEP 01</span>
-              <h3 class="text-base font-extrabold mt-1">1단계(월) - 아람 장군 나아만과 어린 소녀의 소식</h3>
-              <p class="text-[11px] text-white/90 mt-0.5">목표: 세상의 권력자 나아만의 문제와 포로 어린 소녀의 담대한 믿음의 말을 조명합니다.</p>
+              <h3 class="text-base font-extrabold mt-1">1단계(월) - 앗수르의 침략과 랍사게의 조롱</h3>
+              <p class="text-[11px] text-white/90 mt-0.5">목표: 앗수르의 무시무시한 협박과 조롱 앞에서도 여호와 앞에 문제를 펴놓은 히스기야의 믿음을 살펴봅니다.</p>
             </div>
             <span class="text-3xl opacity-30"><i class="fa-solid fa-magnifying-glass"></i></span>
           </div>
@@ -180,25 +173,23 @@
               <span class="w-6 h-6 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</span>
               <div class="space-y-3 w-full break-keep">
                 <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
-                  아람 나라의 크고 존귀한 군대 장관이었던 나아만에게 있던 치명적인 문제는 무엇이었나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(왕하 5:1)</span>
+                  히스기야 왕 제14년에, 유다의 모든 견고한 성읍을 공격해 점령한 무시무시한 강대국 앗수르의 왕은 누구인가요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(왕하 18:13)</span>
                 </p>
                 <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
                   <span>답: </span>
                   <span class="inline-flex items-center whitespace-nowrap align-baseline">
                     <span class="text-slate-400 font-bold">(</span>
-                    <input type="text" id="ans-mon-1" placeholder="ㄴㅂ" class="qt-input w-16 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-600 focus:outline-none font-bold text-amber-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkMonAnswer(1)">
+                    <input type="text" id="ans-mon-1" placeholder="ㅅㅎㄹ" class="qt-input w-20 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-600 focus:outline-none font-bold text-amber-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkMonAnswer(1)">
                     <span class="text-slate-400 font-bold">)</span>
                   </span>
-                  <span> 환자였습니다.</span>
                   
                   <div id="badge-mon-1" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
                     <i class="fa-solid fa-circle-check"></i> 정답 확인됨
                   </div>
                 </div>
-                <!-- Solution Area: ONLY appears once problem 1 is solved -->
                 <div id="explain-mon-1" class="hidden fade-solution bg-amber-50/70 border border-amber-100 rounded-xl p-4 mt-2">
                   <p class="text-xs text-slate-700 leading-relaxed">
-                    <strong>해설:</strong> 나아만은 아람 나라를 구원할 정도로 용맹한 장군이었지만, 당시에는 고칠 수 없었던 심각한 피부병인 나병을 앓고 있었어요. 세상에서 부러울 것 없어 보이는 그에게도 자신의 힘으로는 도저히 해결할 수 없는 깊은 아픔이 있었답니다.
+                    <strong>해설:</strong> 하나님을 잘 믿던 히스기야 왕에게도 끔찍한 위기가 찾아왔어요. 당시 세계 최강대국이었던 앗수르의 왕 산헤립이 거대한 군대를 이끌고 쳐들어와 남 유다의 성벽들을 무너뜨리고 벼랑 끝으로 몰아넣었거든요.
                   </p>
                 </div>
               </div>
@@ -211,25 +202,24 @@
               <span class="w-6 h-6 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</span>
               <div class="space-y-3 w-full break-keep">
                 <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
-                  나아만의 아내를 수종 들던 이스라엘의 어린 소녀는 나아만의 병을 고치기 위해 누구를 찾아가라고 제안했나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(왕하 5:3)</span>
+                  앗수르의 야전 사령관 랍사게는 성벽 앞에서 이스라엘 백성에게 누구의 말에 속지 말라고 조롱했나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(왕하 18:30)</span>
                 </p>
                 <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
-                  <span>답: 사마리아에 계신 </span>
+                  <span>답: </span>
                   <span class="inline-flex items-center whitespace-nowrap align-baseline">
                     <span class="text-slate-400 font-bold">(</span>
-                    <input type="text" id="ans-mon-2" placeholder="ㅅㅈㅈ" class="qt-input w-20 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-500 focus:outline-none font-bold text-amber-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkMonAnswer(2)">
+                    <input type="text" id="ans-mon-2" placeholder="ㅇㅎㅇ" class="qt-input w-20 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-500 focus:outline-none font-bold text-amber-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkMonAnswer(2)">
                     <span class="text-slate-400 font-bold">)</span>
                   </span>
-                  <span> 앞에 가면 병이 나을 것이라고 했습니다.</span>
+                  <span>가 우리를 건지시리라(구원하시리라)는 말</span>
                   
                   <div id="badge-mon-2" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
                     <i class="fa-solid fa-circle-check"></i> 정답 확인됨
                   </div>
                 </div>
-                <!-- Solution Area: ONLY appears once problem 2 is solved -->
                 <div id="explain-mon-2" class="hidden fade-solution bg-amber-50/70 border border-amber-100 rounded-xl p-4 mt-2">
                   <p class="text-xs text-slate-700 leading-relaxed">
-                    <strong>해설:</strong> 아람 사람들에게 포로로 잡혀 와서 나아만의 아내를 섬기던 이스라엘 소녀는, 사마리아에 있는 선지자(엘리사) 앞에 가면 병을 고칠 수 있을 것이라고 말했어요. 이 작고 연약한 소녀의 믿음의 말 한마디가 나아만에게는 놀라운 복음(기쁜 소식)이 되었답니다.
+                    <strong>해설:</strong> 랍사게는 주변의 어떤 신들도 앗수르를 이기지 못했다며, 이스라엘의 하나님도 앗수르의 막강한 군대 앞에서는 절대 예루살렘을 지킬 수 없을 것이라고 협박하고 조롱했습니다.
                   </p>
                 </div>
               </div>
@@ -242,25 +232,23 @@
               <span class="w-6 h-6 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">3</span>
               <div class="space-y-3 w-full break-keep">
                 <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
-                  아람 왕의 편지를 받은 이스라엘 왕은 옷을 찢으며 어떤 반응을 보였나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(왕하 5:7)</span>
+                  랍사게는 여호와 하나님을 주변 나라의 무엇과 똑같다고 깎아내렸나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(왕하 18:33-35)</span>
                 </p>
                 <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
-                  <span>답: "내가 사람을 죽이고 살리는 </span>
+                  <span>답: 멸망한 여러 민족의 </span>
                   <span class="inline-flex items-center whitespace-nowrap align-baseline">
                     <span class="text-slate-400 font-bold">(</span>
-                    <input type="text" id="ans-mon-3" placeholder="ㅎㄴㄴ" class="qt-input w-20 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-600 focus:outline-none font-bold text-amber-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkMonAnswer(3)">
+                    <input type="text" id="ans-mon-3" placeholder="ㅅㄷ" class="qt-input w-16 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-600 focus:outline-none font-bold text-amber-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkMonAnswer(3)">
                     <span class="text-slate-400 font-bold">)</span>
                   </span>
-                  <span>이냐"라며 전쟁의 구실을 찾으려는 것으로 오해하고 두려워했습니다.</span>
                   
                   <div id="badge-mon-3" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
                     <i class="fa-solid fa-circle-check"></i> 정답 확인됨
                   </div>
                 </div>
-                <!-- Solution Area: ONLY appears once problem 3 is solved -->
                 <div id="explain-mon-3" class="hidden fade-solution bg-amber-50/70 border border-amber-100 rounded-xl p-4 mt-2">
                   <p class="text-xs text-slate-700 leading-relaxed">
-                    <strong>해설:</strong> 이스라엘 왕은 이것이 나병을 고쳐달라는 핑계로 아람이 이스라엘과 전쟁을 벌이려는 수작이라고 생각하며 크게 두려워했어요. 포로로 잡혀간 어린 소녀가 품고 있던 하나님의 능력에 대한 믿음조차 이스라엘 왕에게는 없었던 거예요.
+                    <strong>해설:</strong> 열방의 수많은 신들 중 앗수르를 당해낸 신이 없었으니, 이스라엘의 하나님도 그저 그런 무능력한 우상들 중 하나일 뿐이라고 아주 오만하게 주장했습니다.
                   </p>
                 </div>
               </div>
@@ -273,25 +261,23 @@
               <span class="w-6 h-6 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">4</span>
               <div class="space-y-3 w-full break-keep">
                 <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
-                  이스라엘 왕이 옷을 찢었다는 소식을 들은 엘리사는 나아만을 어떻게 하라고 했나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(왕하 5:8)</span>
+                  앗수르 왕 산헤립이 보낸 끔찍한 협박 편지를 받고 히스기야는 어떻게 행동했나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(왕하 19:14)</span>
                 </p>
                 <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
-                  <span>답: "그를 </span>
+                  <span>답: 성전에 올라가 그 편지를 여호와 앞에 </span>
                   <span class="inline-flex items-center whitespace-nowrap align-baseline">
                     <span class="text-slate-400 font-bold">(</span>
-                    <input type="text" id="ans-mon-4" placeholder="ㄴㄱㄹ" class="qt-input w-16 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-500 focus:outline-none font-bold text-amber-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkMonAnswer(4)">
+                    <input type="text" id="ans-mon-4" placeholder="ㅍㄴㄱ" class="qt-input w-20 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-500 focus:outline-none font-bold text-amber-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkMonAnswer(4)">
                     <span class="text-slate-400 font-bold">)</span>
                   </span>
-                  <span> 오게 하소서"라고 왕에게 당당히 전달했습니다.</span>
                   
                   <div id="badge-mon-4" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2.5 py-1 rounded-lg w-fit">
                     <i class="fa-solid fa-circle-check"></i> 정답 확인됨
                   </div>
                 </div>
-                <!-- Solution Area: ONLY appears once problem 4 is solved -->
                 <div id="explain-mon-4" class="hidden fade-solution bg-amber-50/70 border border-amber-100 rounded-xl p-4 mt-2">
                   <p class="text-xs text-slate-700 leading-relaxed">
-                    <strong>해설:</strong> 엘리사는 두려움에 빠진 이스라엘 왕에게 기별하여 나아만을 자기에게 보내라고 했어요. 이스라엘 중에 하나님의 능력을 나타내는 참된 선지자가 있음을 알게 하려는 것이었죠.
+                    <strong>해설:</strong> 히스기야는 자신의 힘으로 해결할 수 없는 문제를 하나님 앞에 있는 그대로 쫙 펼쳐 놓았습니다. 이것은 위기를 돌파하는 하나님 나라 백성의 가장 지혜로운 SOS 요청 방법이에요.
                   </p>
                 </div>
               </div>
@@ -304,9 +290,9 @@
               <span class="w-6 h-6 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">5</span>
               <div class="space-y-3 w-full">
                 <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
-                  내 주변에 하나님의 은혜와 복음(기쁜 소식)이 가장 필요한 사람은 누구이며, 내가 그 친구에게 전해줄 수 있는 '소녀의 한 마디'는 무엇일지 솔직하게 써 보세요.
+                  내 힘으로 감당하기 벅찬 위기나 스트레스를 받을 때 나는 주로 누구에게 의지하나요? 히스기야처럼 문제(편지)를 숨기지 않고 하나님 앞에 솔직하게 '펴 놓고' 기도하기 위해, 오늘 내가 주님께 가져가야 할 고민은 무엇인지 적어보세요.
                 </p>
-                <textarea id="ans-mon-5" rows="3" placeholder="내 생각과 고백을 자유롭게 적어보세요... (3자 이상 입력하면 완료됩니다)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 text-base" oninput="checkMonAnswer(5)"></textarea>
+                <textarea id="ans-mon-5" rows="3" placeholder="내 생각과 솔직한 고민을 적어보세요... (3자 이상 입력)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 text-base" oninput="checkMonAnswer(5)"></textarea>
               </div>
             </div>
           </div>
@@ -317,8 +303,8 @@
           <div class="bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-2xl p-4 shadow-sm flex items-center justify-between">
             <div>
               <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold uppercase">STEP 02</span>
-              <h3 class="text-base font-extrabold mt-1">2단계(화) - 자존심을 꺾은 나아만의 순종</h3>
-              <p class="text-[11px] text-white/90 mt-0.5">목표: 교만한 생각을 내려놓고 하나님의 말씀대로 순종하여 얻은 치유와 구원을 살펴봅니다.</p>
+              <h3 class="text-base font-extrabold mt-1">2단계(화) - 하나님의 응답과 하룻밤의 승리</h3>
+              <p class="text-[11px] text-white/90 mt-0.5">목표: 여호와의 사자가 이룬 기적적인 구원과 교만한 앗수르 왕의 최후를 살펴봅니다.</p>
             </div>
             <span class="text-3xl opacity-30"><i class="fa-solid fa-hands-praying"></i></span>
           </div>
@@ -329,31 +315,24 @@
               <span class="w-6 h-6 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</span>
               <div class="space-y-3 w-full break-keep">
                 <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
-                  나아만이 엘리사의 집 문 앞에 도착했을 때, 엘리사는 사자를 보내 어떤 처방을 내렸나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(왕하 5:10)</span>
+                  히스기야는 다급한 위기 속에서도 단순히 "우리 좀 살려주세요"라고만 기도하지 않았어요. 하나님이 이스라엘을 구원해 주셨을 때, 온 세상(천하 만국)이 무엇을 깨닫게 되기를 바랐나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(왕하 19:19)</span>
                 </p>
                 <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
-                  <span>답: </span>
+                  <span>답: 주 여호와가 홀로 </span>
                   <span class="inline-flex items-center whitespace-nowrap align-baseline">
                     <span class="text-slate-400 font-bold">(</span>
-                    <input type="text" id="ans-tue-1-1" placeholder="ㅇㄷ ㄱ" class="qt-input w-20 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-600 focus:outline-none font-bold text-amber-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkTueAnswer(1)">
+                    <input type="text" id="ans-tue-1" placeholder="ㅎㄴㄴ" class="qt-input w-20 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-600 focus:outline-none font-bold text-amber-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkTueAnswer(1)">
                     <span class="text-slate-400 font-bold">)</span>
                   </span>
-                  <span>에 몸을 </span>
-                  <span class="inline-flex items-center whitespace-nowrap align-baseline">
-                    <span class="text-slate-400 font-bold">(</span>
-                    <input type="text" id="ans-tue-1-2" placeholder="ㅇㄱ" class="qt-input w-16 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-600 focus:outline-none font-bold text-amber-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkTueAnswer(1)">
-                    <span class="text-slate-400 font-bold">)</span>
-                  </span>
-                  <span> 번 씻으라고 했습니다.</span>
+                  <span>이신 줄 알게 하려 함</span>
                   
                   <div id="badge-tue-1" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
                     <i class="fa-solid fa-circle-check"></i> 정답 확인됨
                   </div>
                 </div>
-                <!-- Solution Area: ONLY appears once problem 1 is solved -->
                 <div id="explain-tue-1" class="hidden fade-solution bg-amber-50/70 border border-amber-100 rounded-xl p-4 mt-2">
                   <p class="text-xs text-slate-700 leading-relaxed">
-                    <strong>해설:</strong> 엘리사는 직접 마중을 나오지도 않고 사자를 보내어, 요단 강에 몸을 일곱 번 씻으라는 아주 쉽고 간단한 처방을 내렸어요.
+                    <strong>해설:</strong> 히스기야의 기도는 그저 위기를 피하려는 게 아니었어요. 위대한 구원을 통해 온 세상 사람들이 '우리를 조롱하던 저 앗수르가 틀렸고, 여호와가 진짜 살아계신 하나님이시다!'라는 것을 깨닫게 해달라는 멋진 기도였답니다.
                   </p>
                 </div>
               </div>
@@ -366,25 +345,24 @@
               <span class="w-6 h-6 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</span>
               <div class="space-y-3 w-full break-keep">
                 <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
-                  엘리사의 처방을 들은 나아만은 크게 노하여 돌아가려고 했습니다. 그 이유는 무엇이었나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(왕하 5:11)</span>
+                  히스기야의 기도를 들으신 하나님은 "내가 나와 나의 종 다윗을 위하여 이 성을 보호하여 이룰 것"이라 약속하셨나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(왕하 19:34)</span>
                 </p>
                 <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
-                  <span>답: 선지자의 간단한 처방이 그의 </span>
+                  <span>답: </span>
                   <span class="inline-flex items-center whitespace-nowrap align-baseline">
                     <span class="text-slate-400 font-bold">(</span>
-                    <input type="text" id="ans-tue-2" placeholder="ㅅㄱ" class="qt-input w-16 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-500 focus:outline-none font-bold text-amber-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkTueAnswer(2)">
+                    <input type="text" id="ans-tue-2" placeholder="ㄱㅇ" class="qt-input w-16 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-500 focus:outline-none font-bold text-amber-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkTueAnswer(2)">
                     <span class="text-slate-400 font-bold">)</span>
                   </span>
-                  <span>과 달랐기 때문입니다.</span>
+                  <span>하리라</span>
                   
                   <div id="badge-tue-2" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
                     <i class="fa-solid fa-circle-check"></i> 정답 확인됨
                   </div>
                 </div>
-                <!-- Solution Area: ONLY appears once problem 2 is solved -->
                 <div id="explain-tue-2" class="hidden fade-solution bg-amber-50/70 border border-amber-100 rounded-xl p-4 mt-2">
                   <p class="text-xs text-slate-700 leading-relaxed">
-                    <strong>해설:</strong> 나아만은 선지자가 직접 나와서 상처 위에 손을 얹고 하나님의 이름을 부르며 고쳐줄 것이라고 기대했어요. 자신의 생각과 너무나 다른 엘리사의 대우와 간단한 처방에 자존심이 상했던 거예요.
+                    <strong>해설:</strong> 하나님은 기도하는 히스기야에게 응답하셨고, 하나님의 거룩한 이름과 다윗과 맺은 언약을 기억하시며 예루살렘을 반드시 지켜주시겠다고 말씀하셨어요.
                   </p>
                 </div>
               </div>
@@ -397,25 +375,23 @@
               <span class="w-6 h-6 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">3</span>
               <div class="space-y-3 w-full break-keep">
                 <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
-                  분노하여 돌아가려던 나아만은 결국 어떻게 병을 고침받게 되었나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(왕하 5:14)</span>
+                  하나님의 약속대로 그날 밤 앗수르 진영에 나타나 군사 18만 5천 명을 단숨에 물리친 것은 누구인가요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(왕하 19:35)</span>
                 </p>
                 <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
-                  <span>답: 하나님의 사람의 말대로 </span>
+                  <span>답: 여호와의 </span>
                   <span class="inline-flex items-center whitespace-nowrap align-baseline">
                     <span class="text-slate-400 font-bold">(</span>
                     <input type="text" id="ans-tue-3" placeholder="ㅅㅈ" class="qt-input w-16 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-600 focus:outline-none font-bold text-amber-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkTueAnswer(3)">
                     <span class="text-slate-400 font-bold">)</span>
                   </span>
-                  <span>하여 요단 강에 몸을 잠그니 깨끗해졌습니다.</span>
                   
                   <div id="badge-tue-3" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2.5 py-1 rounded-lg w-fit">
                     <i class="fa-solid fa-circle-check"></i> 정답 확인됨
                   </div>
                 </div>
-                <!-- Solution Area: ONLY appears once problem 3 is solved -->
                 <div id="explain-tue-3" class="hidden fade-solution bg-amber-50/70 border border-amber-100 rounded-xl p-4 mt-2">
                   <p class="text-xs text-slate-700 leading-relaxed">
-                    <strong>해설:</strong> 나아만은 지혜로운 종들의 조언을 듣고 마음을 돌이켰어요. 하나님의 은혜를 받기 위해 자신의 교만한 생각을 꺾고 하나님의 말씀에 겸손히 순종했을 때, 그의 피부가 어린아이처럼 깨끗하게 낫는 기적을 경험했답니다.
+                    <strong>해설:</strong> 이길 수 없어 보이던 전쟁은 하룻밤 사이에 하나님의 능력으로 끝이 났어요. 천사를 보내셔서 이스라엘은 칼 한 번 휘두르지 않고 완벽한 승리를 거둔 거예요!
                   </p>
                 </div>
               </div>
@@ -428,25 +404,24 @@
               <span class="w-6 h-6 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">4</span>
               <div class="space-y-3 w-full break-keep">
                 <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
-                  병을 고침 받은 나아만은 엘리사 선지자에게 다시 돌아와 어떤 놀라운 고백을 했나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(왕하 5:15)</span>
+                  하나님을 모욕했던 앗수르 왕 산헤립은 본국으로 도망쳐서 결국 어떻게 되었나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(왕하 19:37)</span>
                 </p>
                 <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
-                  <span>답: "온 천하에 이스라엘 외에는 </span>
+                  <span>답: 자기가 섬기는 신전에서 경배할 때 칼에 </span>
                   <span class="inline-flex items-center whitespace-nowrap align-baseline">
                     <span class="text-slate-400 font-bold">(</span>
-                    <input type="text" id="ans-tue-4" placeholder="ㅅ" class="qt-input w-12 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-500 focus:outline-none font-bold text-amber-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkTueAnswer(4)">
+                    <input type="text" id="ans-tue-4" placeholder="ㅈㅇ" class="qt-input w-20 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-500 focus:outline-none font-bold text-amber-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkTueAnswer(4)">
                     <span class="text-slate-400 font-bold">)</span>
                   </span>
-                  <span>이 없는 줄을 아나이다"라고 선언했습니다.</span>
+                  <span> 당함</span>
                   
                   <div id="badge-tue-4" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
                     <i class="fa-solid fa-circle-check"></i> 정답 확인됨
                   </div>
                 </div>
-                <!-- Solution Area: ONLY appears once problem 4 is solved -->
                 <div id="explain-tue-4" class="hidden fade-solution bg-amber-50/70 border border-amber-100 rounded-xl p-4 mt-2">
                   <p class="text-xs text-slate-700 leading-relaxed">
-                    <strong>해설:</strong> 나아만은 거만했던 태도를 버리고 겸손하게 돌아와, 이스라엘의 하나님만이 온 천하의 유일하신 참 하나님이라고 고백했어요. 이방인 장군이 육체의 치유를 넘어 하나님을 왕으로 고백하는 영혼의 구원까지 얻게 된 놀라운 순간이에요.
+                    <strong>해설:</strong> 하나님은 살아계신 분입니다. 하나님을 비방하며 자신을 신적인 위치에 올려놓았던 교만한 산헤립은 결국 자신이 굳게 믿던 헛된 우상 앞에서 비참한 최후를 맞이했습니다.
                   </p>
                 </div>
               </div>
@@ -459,9 +434,9 @@
               <span class="w-6 h-6 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">5</span>
               <div class="space-y-3 w-full">
                 <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
-                  나아만은 자신의 생각과 고집을 꺾고 하나님 말씀에 겸손히 순종했을 때 놀라운 은혜를 체험했습니다. 내가 하나님 말씀에 순종하기 위해 지금 당장 내려놓아야 할 '나만의 생각이나 고집'은 무엇인지 진솔하게 써 보세요.
+                  세상은 교회를 조롱하고 하나님의 능력을 무시하기도 합니다. 랍사게의 조롱에도 흔들리지 않고 기도로 하나님의 일하심을 경험했던 히스기야처럼, 거대한 세상 속에서 내 믿음을 지키기 위해 오늘 내가 다짐할 것은 무엇인가요?
                 </p>
-                <textarea id="ans-tue-5" rows="3" placeholder="내 생각과 다짐을 자유롭게 작성해 보세요..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 text-base" oninput="checkTueAnswer(5)"></textarea>
+                <textarea id="ans-tue-5" rows="3" placeholder="믿음을 지키기 위한 나의 결단을 자유롭게 적어보세요... (3자 이상 입력)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 text-base" oninput="checkTueAnswer(5)"></textarea>
               </div>
             </div>
           </div>
@@ -473,7 +448,7 @@
             <div>
               <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold uppercase">STEP 03</span>
               <h3 class="text-base font-extrabold mt-1">3단계(수) - 킹덤 묵상 리딩</h3>
-              <p class="text-[11px] text-white/90 mt-0.5">목표: 포로 소녀의 입술에서 시작된 복음의 나비효과와 나아만의 치유를 읽고 묵상합니다.</p>
+              <p class="text-[11px] text-white/90 mt-0.5">목표: 절체절명의 위기 속에서 기도로 하룻밤의 반전을 이끌어낸 히스기야의 이야기를 읽고 묵상합니다.</p>
             </div>
             <span class="text-3xl opacity-30"><i class="fa-solid fa-feather-pointed"></i></span>
           </div>
@@ -482,12 +457,12 @@
             <div class="flex items-start gap-3">
               <span class="w-6 h-6 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">💭</span>
               <div class="space-y-4 w-full">
-                <h4 class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">나아만 장군과 포로 소녀 이야기를 읽고 느낀 점</h4>
-                <p class="text-xs text-slate-500 leading-relaxed">수요일의 킹덤 리딩(왼쪽 본문)을 통해 힘없는 어린 소녀의 말 한마디가 이방 장군의 영혼을 구원한 복음의 나비효과를 만났습니다. 오늘 본문에서 얻은 깨달음이나 내 삶의 적용을 작성해 보세요.</p>
+                <h4 class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">히스기야의 기도와 승리 이야기를 읽고 느낀 점</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">수요일의 킹덤 리딩(왼쪽 본문)을 통해 위기 앞에서 세상의 조롱에 굴하지 않고 하나님 앞에 문제를 펴놓은 기도의 능력을 읽었습니다. 오늘 본문에서 얻은 깨달음이나 내 삶의 적용을 작성해 보세요.</p>
                 
                 <div class="space-y-1.5">
                   <label for="ans-wed-reflex" class="text-xs font-bold text-slate-500 block">나의 다짐과 고백</label>
-                  <textarea id="ans-wed-reflex" rows="6" placeholder="어린 소녀처럼 내 주변에 담대히 전할 복음의 한 마디와, 나아만처럼 내려놓을 고집에 대해 적어 보세요... (3자 이상 입력)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 text-base" oninput="checkWedAnswer()"></textarea>
+                  <textarea id="ans-wed-reflex" rows="6" placeholder="막막한 문제 앞에서도 당황하지 않고 하나님께 기도의 SOS를 치겠다는 다짐을 적어보세요... (3자 이상 입력)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 text-base" oninput="checkWedAnswer()"></textarea>
                 </div>
 
                 <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-xl text-xs text-indigo-950 flex gap-2">
@@ -505,14 +480,14 @@
             <div>
               <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold uppercase">STEP 04</span>
               <h3 class="text-base font-extrabold mt-1">4단계(목) - 하나님 나라 관점</h3>
-              <p class="text-[11px] text-white/90 mt-0.5">목표: '복음'이란 주제 단어를 통해 하나님 나라 관점으로 본문을 탐구합니다.</p>
+              <p class="text-[11px] text-white/90 mt-0.5">목표: '기도' 주제 단어를 통해 하나님 나라 관점으로 본문을 탐구합니다.</p>
             </div>
             <span class="text-3xl opacity-30"><i class="fa-solid fa-compass"></i></span>
           </div>
 
           <div class="bg-indigo-50 p-4 rounded-xl flex items-center gap-3">
             <span class="text-xl shrink-0">✨</span>
-            <p class="text-xs text-indigo-950 font-bold leading-relaxed">4단계 테마 단어: <span class="bg-indigo-100 px-1.5 py-0.5 rounded">복음 (Gospel)</span></p>
+            <p class="text-xs text-indigo-950 font-bold leading-relaxed">4단계 테마 단어: <span class="bg-indigo-100 px-1.5 py-0.5 rounded">기도 (Prayer)</span></p>
           </div>
 
           <!-- Q1 -->
@@ -521,25 +496,24 @@
               <span class="w-6 h-6 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</span>
               <div class="space-y-3 w-full break-keep">
                 <p class="text-sm font-bold text-slate-900 leading-relaxed">
-                  하나님은 어떻게 이방 나라 장군 나아만에게 하나님 나라의 구원을 베푸셨나요? 이 일에 누구를 사용하셨나요?
+                  앗수르 사령관 랍사게의 조롱은 단순히 유다 나라를 향한 위협이 아니라 결국 누구를 향한 정면 도전이었나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(왕하 19:16)</span>
                 </p>
                 <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
-                  <span>답: 포로로 잡혀간 어린 이스라엘 </span>
+                  <span>답: </span>
                   <span class="inline-flex items-center whitespace-nowrap align-baseline">
                     <span class="text-slate-400 font-bold">(</span>
-                    <input type="text" id="ans-thu-1" placeholder="ㅅㄴ" class="qt-input w-16 text-center border-b-2 border-slate-300 bg-transparent focus:border-indigo-600 focus:outline-none font-bold text-indigo-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkThuAnswer(1)">
+                    <input type="text" id="ans-thu-1" placeholder="ㅅㅇㄱㅅ ㅎㄴㄴ" class="qt-input w-[130px] text-center border-b-2 border-slate-300 bg-transparent focus:border-indigo-600 focus:outline-none font-bold text-indigo-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkThuAnswer(1)">
                     <span class="text-slate-400 font-bold">)</span>
                   </span>
-                  <span>가 전한 복음을 통해 구원하셨습니다.</span>
                   
                   <div id="badge-thu-1" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
                     <i class="fa-solid fa-circle-check"></i> 정답 확인됨
                   </div>
                 </div>
-                <!-- Solution is always displayed by default (Rule 5) -->
+                <!-- Solution is ALWAYS displayed by default for Step 4 -->
                 <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs text-slate-700 mt-2 block">
                   <p>
-                    <strong>해설:</strong> 하나님은 이방 나라 사람들도 구원받아 하나님 나라 백성이 되기를 원하십니다. 놀랍게도 하나님은 힘 있는 권력자가 아니라, 신실하고 작은 하나님 나라 백성(어린 소녀)의 입술을 사용하셔서 구원의 복음을 전하게 하셨습니다.
+                    <strong>해설:</strong> 산헤립은 여호와 하나님을 세상의 사람이 만든 나무나 돌 우상들과 똑같이 취급하며 모욕했습니다. 히스기야는 이것이 하나님에 대한 정면 도전이자 비방임을 정확히 꿰뚫어 보았습니다. (💡 힌트: 'ㅅㅇㄱㅅ ㅎㄴㄴ')
                   </p>
                 </div>
               </div>
@@ -552,25 +526,24 @@
               <span class="w-6 h-6 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</span>
               <div class="space-y-3 w-full break-keep">
                 <p class="text-sm font-bold text-slate-900 leading-relaxed">
-                  이스라엘 왕은 두려워했지만(왕하 5:7), 나아만은 치유를 받고 하나님을 참 왕으로 고백했습니다(왕하 5:15). 이 사실을 볼 때 하나님의 은혜와 다스림의 범위는 어디까지인가요?
+                  히스기야는 국가적인 위기 상황에서 강대국(애굽 등)의 군사력을 의지하는 대신 누구에게 가장 먼저 구원을 요청했나요?
                 </p>
                 <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
-                  <span>답: 이스라엘을 넘어 온 열방과 </span>
+                  <span>답: </span>
                   <span class="inline-flex items-center whitespace-nowrap align-baseline">
                     <span class="text-slate-400 font-bold">(</span>
-                    <input type="text" id="ans-thu-2" placeholder="ㅁㄷ ㅅㄹ" class="qt-input w-28 text-center border-b-2 border-slate-300 bg-transparent focus:border-indigo-600 focus:outline-none font-bold text-indigo-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkThuAnswer(2)">
+                    <input type="text" id="ans-thu-2" placeholder="ㅇㅎㅇ ㅎㄴㄴ" class="qt-input w-[130px] text-center border-b-2 border-slate-300 bg-transparent focus:border-indigo-600 focus:outline-none font-bold text-indigo-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkThuAnswer(2)">
                     <span class="text-slate-400 font-bold">)</span>
                   </span>
-                  <span>에게 미칩니다.</span>
                   
                   <div id="badge-thu-2" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
                     <i class="fa-solid fa-circle-check"></i> 정답 확인됨
                   </div>
                 </div>
-                <!-- Solution is always displayed by default (Rule 5) -->
+                <!-- Solution is ALWAYS displayed by default for Step 4 -->
                 <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs text-slate-700 mt-2 block">
                   <p>
-                    <strong>해설:</strong> 사람들은 민족과 지위로 세상을 나누지만, 선하신 하나님의 은혜와 치유는 국경을 뛰어넘어 온 세상 <strong class="text-indigo-600 underline">모든 사람</strong>에게 미칩니다. (💡 힌트: 'ㅁㄷ ㅅㄹ')
+                    <strong>해설:</strong> 인간의 지혜나 힘을 의지하지 않고, 성전으로 들어가 오직 하나님께만 전적으로 매달리며 엎드린 것이 하나님 나라 백성의 바른 태도입니다. (💡 힌트: 'ㅇㅎㅇ ㅎㄴㄴ')
                   </p>
                 </div>
               </div>
@@ -583,31 +556,24 @@
               <span class="w-6 h-6 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">3</span>
               <div class="space-y-3 w-full break-keep">
                 <p class="text-sm font-bold text-slate-900 leading-relaxed">
-                  하나님의 놀라운 은혜와 치유를 경험하기 위해, 나아만이 반드시 버려야 했던 것과 가져야 했던 태도는 무엇인가요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(왕하 5:11-14)</span>
+                  위기에 처한 이스라엘을 구원하시고, 앗수르의 대군을 하룻밤 사이에 물리쳐 주신 분은 누구이신가요?
                 </p>
                 <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
-                  <span>답: 내 </span>
+                  <span>답: 오직 참된 왕이신 </span>
                   <span class="inline-flex items-center whitespace-nowrap align-baseline">
                     <span class="text-slate-400 font-bold">(</span>
-                    <input type="text" id="ans-thu-3-1" placeholder="ㅅㄱ" class="qt-input w-16 text-center border-b-2 border-slate-300 bg-transparent focus:border-indigo-600 focus:outline-none font-bold text-indigo-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkThuAnswer(3)">
+                    <input type="text" id="ans-thu-3" placeholder="ㅎㄴㄴ" class="qt-input w-20 text-center border-b-2 border-slate-300 bg-transparent focus:border-indigo-600 focus:outline-none font-bold text-indigo-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkThuAnswer(3)">
                     <span class="text-slate-400 font-bold">)</span>
                   </span>
-                  <span>(고집, 교만)을 꺾고 하나님 말씀에 </span>
-                  <span class="inline-flex items-center whitespace-nowrap align-baseline">
-                    <span class="text-slate-400 font-bold">(</span>
-                    <input type="text" id="ans-thu-3-2" placeholder="ㄱㅅ" class="qt-input w-16 text-center border-b-2 border-slate-300 bg-transparent focus:border-indigo-600 focus:outline-none font-bold text-indigo-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkThuAnswer(3)">
-                    <span class="text-slate-400 font-bold">)</span>
-                  </span>
-                  <span>히 순종해야 했습니다.</span>
                   
                   <div id="badge-thu-3" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
                     <i class="fa-solid fa-circle-check"></i> 정답 확인됨
                   </div>
                 </div>
-                <!-- Solution is always displayed by default (Rule 5) -->
+                <!-- Solution is ALWAYS displayed by default for Step 4 -->
                 <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs text-slate-700 mt-2 block">
                   <p>
-                    <strong>해설:</strong> 나아만은 엘리사의 처방이 자신의 예상과 달라서 분노했지만, 자신의 영적 교만과 허영인 <strong class="text-indigo-600 underline">'내 생각'</strong>을 내려놓고 말씀에 <strong class="text-indigo-600 underline">'겸손'</strong>하게 순종했을 때 육체와 영혼의 질병을 치유 받을 수 있었습니다. (💡 힌트: 'ㅅㄱ', 'ㄱㅅ')
+                    <strong>해설:</strong> 하나님 나라를 지키고 구원하시는 분은 세상의 군대나 무기가 아니라, 오직 진정한 하늘 임금이신 하나님뿐입니다. 히스기야의 기도를 들으신 하나님이 천사를 보내셔서 불가능해 보이던 위기를 직접 해결해 주셨습니다. (💡 힌트: 'ㅎㄴㄴ')
                   </p>
                 </div>
               </div>
@@ -620,25 +586,25 @@
               <span class="w-6 h-6 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">4</span>
               <div class="space-y-3 w-full break-keep">
                 <p class="text-sm font-bold text-slate-900 leading-relaxed">
-                  이방인 장군이었던 나아만이 물에 들어갔다 나온 뒤 보여 준 전인적인 변화는 오늘날 교회의 어떤 모습을 떠올리게 하나요?
+                  하나님께서 앗수르의 무서운 위협으로부터 예루살렘 성을 보호하시고 구원해 주신 근본적인 이유는 무엇인가요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(왕하 19:34)</span>
                 </p>
                 <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
-                  <span>답: 육신의 치유를 능가하는 영혼 구원을 얻어 참 하나님을 고백하는 성도의 </span>
+                  <span>답: 나와 나의 종 </span>
                   <span class="inline-flex items-center whitespace-nowrap align-baseline">
                     <span class="text-slate-400 font-bold">(</span>
-                    <input type="text" id="ans-thu-4" placeholder="ㅅㄹ" class="qt-input w-16 text-center border-b-2 border-slate-300 bg-transparent focus:border-indigo-600 focus:outline-none font-bold text-indigo-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkThuAnswer(4)">
+                    <input type="text" id="ans-thu-4" placeholder="ㄷㅇ" class="qt-input w-16 text-center border-b-2 border-slate-300 bg-transparent focus:border-indigo-600 focus:outline-none font-bold text-indigo-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkThuAnswer(4)">
                     <span class="text-slate-400 font-bold">)</span>
                   </span>
-                  <span>를 떠올리게 합니다.</span>
+                  <span>을 위하여</span>
                   
                   <div id="badge-thu-4" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
                     <i class="fa-solid fa-circle-check"></i> 정답 확인됨
                   </div>
                 </div>
-                <!-- Solution is always displayed by default (Rule 5) -->
+                <!-- Solution is ALWAYS displayed by default for Step 4 -->
                 <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs text-slate-700 mt-2 block">
                   <p>
-                    <strong>해설:</strong> 우상을 버리고 오직 참 신이신 하나님만 예배하겠다고 결단한 나아만의 모습은, 예수 그리스도를 믿고 옛 자아가 죽고 새 사람으로 태어나는 세례 받은 모든 성도의 이야기와 같습니다.
+                    <strong>해설:</strong> 하나님은 단순히 이스라엘이 불쌍해서 구원하신 것이 아닙니다. 자신의 거룩한 이름과, 과거 다윗과 맺으셨던 '영원한 하나님 나라'에 대한 언약(약속)을 끝까지 신실하게 지키시기 위해 놀라운 구원을 베풀어 주셨습니다. (💡 힌트: 'ㄷㅇ')
                   </p>
                 </div>
               </div>
@@ -651,9 +617,9 @@
               <span class="w-6 h-6 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">5</span>
               <div class="space-y-3 w-full">
                 <p class="text-sm font-bold text-slate-900 leading-relaxed">
-                  웨스트민스터 대교리문답 60문을 읽고, 왜 우리가 그리스도의 복음을 듣지 못한 사람들에게 복음을 전해야 하는지 생각해 보세요. 어린 소녀가 나아만에게 복음을 전하지 않았다면 어떤 일이 벌어졌을까요?
+                  웨스트민스터 소교리문답 56문을 읽고, 하나님의 이름이 멸시당할 때 우리가 가져야 할 태도를 생각해 봅시다. 오늘날 학교나 세상에서 하나님의 이름이나 교회가 조롱당할 때, 하나님 나라 백성인 우리는 어떤 마음을 품고 어떻게 기도해야 할까요?
                 </p>
-                <textarea id="ans-thu-5" rows="3" placeholder="내 생각과 묵상을 자유롭게 작성해 보세요... (3자 이상 입력)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-base" oninput="checkThuAnswer(5)"></textarea>
+                <textarea id="ans-thu-5" rows="3" placeholder="나의 고백과 기도를 적어보세요... (3자 이상 입력)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-base" oninput="checkThuAnswer(5)"></textarea>
               </div>
             </div>
           </div>
@@ -665,7 +631,7 @@
             <div>
               <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold uppercase">STEP 05</span>
               <h3 class="text-base font-extrabold mt-1">5단계(금) - 킹덤 최종 퀴즈</h3>
-              <p class="text-[11px] text-white/90 mt-0.5">목표: 한 주간 배운 나아만과 어린 소녀 이야기의 전체 내용을 성찰합니다.</p>
+              <p class="text-[11px] text-white/90 mt-0.5">목표: 한 주간 배운 히스기야의 기도와 하나님의 구원 전체 내용을 성찰합니다.</p>
             </div>
             <span class="text-3xl opacity-30"><i class="fa-solid fa-trophy"></i></span>
           </div>
@@ -673,7 +639,7 @@
           <!-- Q1 -->
           <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="fri-card-1">
             <span class="text-xs font-bold text-slate-400">질문 1</span>
-            <h4 class="text-sm md:text-base font-medium text-slate-950 mt-1">나아만 장군은 훌륭한 권력과 재물을 바쳐 선지자의 환심을 샀기 때문에 하나님의 놀라운 치유를 받을 수 있었다. (O, X)</h4>
+            <h4 class="text-sm md:text-base font-medium text-slate-950 mt-1">히스기야 왕은 앗수르 왕 산헤립의 협박 편지를 받고, 즉시 주변국인 애굽에 군대를 요청하여 위기를 멋지게 극복했다. (O, X)</h4>
             
             <div class="grid grid-cols-2 gap-3 mt-4">
               <button onclick="selectFriQuiz(1, 1)" id="fri-btn-1-1" class="border-2 border-slate-200 rounded-2xl p-4 text-slate-700 hover:border-amber-500 hover:bg-amber-50/25 transition-all flex flex-col items-center gap-2">
@@ -690,24 +656,24 @@
           <!-- Q2 -->
           <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="fri-card-2">
             <span class="text-xs font-bold text-slate-400">질문 2</span>
-            <h4 class="text-sm md:text-base font-medium text-slate-950 mt-1">치명적인 피부병을 앓던 나아만에게 사마리아의 선지자를 찾아가라고 처음 기쁜 소식(복음)을 전해 준 사람은 누구인가요? (왕하 5:2-3)</h4>
+            <h4 class="text-sm md:text-base font-medium text-slate-950 mt-1">앗수르의 랍사게가 예루살렘 성벽 앞에서 이스라엘 백성에게 외친 조롱의 핵심 내용은 무엇인가요?</h4>
             
             <div class="grid grid-cols-1 gap-3 mt-4">
               <button onclick="selectFriQuiz(2, 1)" id="fri-btn-2-1" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-amber-500 hover:bg-amber-50/25 transition-all flex gap-3 items-center w-full">
                 <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">①</div>
-                <p class="text-xs text-slate-700">아람 나라의 왕</p>
+                <p class="text-xs text-slate-700">앗수르에 항복하면 더 많은 세금을 걷겠다.</p>
               </button>
               <button onclick="selectFriQuiz(2, 2)" id="fri-btn-2-2" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-amber-500 hover:bg-amber-50/25 transition-all flex gap-3 items-center w-full">
                 <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">②</div>
-                <p class="text-xs text-slate-700">이스라엘의 왕</p>
+                <p class="text-xs text-slate-700">이스라엘 군대의 숫자가 너무 적어 싸울 가치도 없다.</p>
               </button>
               <button onclick="selectFriQuiz(2, 3)" id="fri-btn-2-3" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-amber-500 hover:bg-amber-50/25 transition-all flex gap-3 items-center w-full">
                 <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">③</div>
-                <p class="text-xs text-slate-700">포로로 잡혀 와 있던 이스라엘의 어린 소녀</p>
+                <p class="text-xs text-slate-700">너희 하나님 여호와가 구원할 것이라는 말에 속지 말라.</p>
               </button>
               <button onclick="selectFriQuiz(2, 4)" id="fri-btn-2-4" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-amber-500 hover:bg-amber-50/25 transition-all flex gap-3 items-center w-full">
                 <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">④</div>
-                <p class="text-xs text-slate-700">나아만의 지혜로운 부하들</p>
+                <p class="text-xs text-slate-700">예루살렘의 식량이 떨어졌으니 곧 굶어 죽을 것이다.</p>
               </button>
             </div>
           </div>
@@ -715,24 +681,24 @@
           <!-- Q3 -->
           <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="fri-card-3">
             <span class="text-xs font-bold text-slate-400">질문 3</span>
-            <h4 class="text-sm md:text-base font-medium text-slate-950 mt-1">선지자 엘리사의 처방을 듣고 나아만이 처음에 몹시 분노하며 돌아가려 했던 가장 큰 이유는 무엇이었나요? (왕하 5:11)</h4>
+            <h4 class="text-sm md:text-base font-medium text-slate-950 mt-1">앗수르 왕의 무시무시한 협박 편지를 손에 받아든 히스기야가 한 행동으로 올바른 것은 무엇인가요?</h4>
             
             <div class="grid grid-cols-1 gap-3 mt-4">
               <button onclick="selectFriQuiz(3, 1)" id="fri-btn-3-1" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-amber-500 hover:bg-amber-50/25 transition-all flex gap-3 items-center w-full">
                 <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">①</div>
-                <p class="text-xs text-slate-700">요단 강 물이 너무 더러워서</p>
+                <p class="text-xs text-slate-700">분노하여 편지를 불태워버렸다.</p>
               </button>
               <button onclick="selectFriQuiz(3, 2)" id="fri-btn-3-2" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-amber-500 hover:bg-amber-50/25 transition-all flex gap-3 items-center w-full">
                 <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">②</div>
-                <p class="text-xs text-slate-700">이스라엘 왕이 엘리사를 만나는 것을 막아서</p>
+                <p class="text-xs text-slate-700">두려움에 숨어서 아무도 만나지 않았다.</p>
               </button>
               <button onclick="selectFriQuiz(3, 3)" id="fri-btn-3-3" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-amber-500 hover:bg-amber-50/25 transition-all flex gap-3 items-center w-full">
                 <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">③</div>
-                <p class="text-xs text-slate-700">가져온 은금과 예물이 부족하다고 거절당해서</p>
+                <p class="text-xs text-slate-700">백성들을 모아놓고 편지 내용을 읽으며 항복을 설득했다.</p>
               </button>
               <button onclick="selectFriQuiz(3, 4)" id="fri-btn-3-4" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-amber-500 hover:bg-amber-50/25 transition-all flex gap-3 items-center w-full">
                 <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">④</div>
-                <p class="text-xs text-slate-700">선지자가 직접 나와서 고쳐줄 것이라는 자신의 생각과 너무 달라서</p>
+                <p class="text-xs text-slate-700">성전에 올라가 그 편지를 여호와 앞에 펴 놓고 기도했다.</p>
               </button>
             </div>
           </div>
@@ -740,24 +706,24 @@
           <!-- Q4 -->
           <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="fri-card-4">
             <span class="text-xs font-bold text-slate-400">질문 4</span>
-            <h4 class="text-sm md:text-base font-medium text-slate-950 mt-1">요단 강에서 일곱 번 몸을 씻고 병이 깨끗하게 나은 나아만이 보여 준 가장 놀라운 변화는 무엇인가요? (왕하 5:15)</h4>
+            <h4 class="text-sm md:text-base font-medium text-slate-950 mt-1">웨스트민스터 소교리문답 56문(제3계명)과 관련하여, 세상 사람들이 교회를 모욕하고 하나님의 이름을 멸시할 때 우리가 가져야 할 바른 태도는 무엇인가요?</h4>
             
             <div class="grid grid-cols-1 gap-3 mt-4">
               <button onclick="selectFriQuiz(4, 1)" id="fri-btn-4-1" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-amber-500 hover:bg-amber-50/25 transition-all flex gap-3 items-center w-full">
                 <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">①</div>
-                <p class="text-xs text-slate-700">아람 나라로 돌아가 이스라엘과 다시 전쟁을 선포했다.</p>
+                <p class="text-xs text-slate-700">나에게 직접 욕하는 것이 아니니 조용히 넘어간다.</p>
               </button>
               <button onclick="selectFriQuiz(4, 2)" id="fri-btn-4-2" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-amber-500 hover:bg-amber-50/25 transition-all flex gap-3 items-center w-full">
                 <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">②</div>
-                <p class="text-xs text-slate-700">자신에게 충고해 준 부하들에게 큰돈을 나누어 주었다.</p>
+                <p class="text-xs text-slate-700">똑같이 세상 사람들에게 욕하고 싸운다.</p>
               </button>
               <button onclick="selectFriQuiz(4, 3)" id="fri-btn-4-3" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-amber-500 hover:bg-amber-50/25 transition-all flex gap-3 items-center w-full">
                 <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">③</div>
-                <p class="text-xs text-slate-700">이제 이스라엘 외에는 온 천하에 참 신이 없다고 유일하신 하나님을 고백했다.</p>
+                <p class="text-xs text-slate-700">하나님의 거룩하신 이름이 모독당하는 것에 마음 아파하며 기도한다.</p>
               </button>
               <button onclick="selectFriQuiz(4, 4)" id="fri-btn-4-4" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-amber-500 hover:bg-amber-50/25 transition-all flex gap-3 items-center w-full">
                 <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">④</div>
-                <p class="text-xs text-slate-700">자신이 직접 이방 나라를 위한 새로운 제사장이 되겠다고 선언했다.</p>
+                <p class="text-xs text-slate-700">교회가 잘못한 일이니 어쩔 수 없다고 인정한다.</p>
               </button>
             </div>
           </div>
@@ -767,13 +733,12 @@
             <span class="text-xs font-bold text-slate-400">질문 5 (상황형 마음 고백)</span>
             <div class="bg-indigo-50 border border-indigo-150 p-4 rounded-xl mt-1.5 space-y-2">
               <p class="text-xs text-indigo-950 font-medium leading-relaxed">
-                💬 학교에서 친구 지민이가 이렇게 말합니다. "나는 교회엔 안 가지만 봉사활동도 열심히 하고 나쁜 짓도 안 하니까, 이대로 착하게 살면 죽어서 좋은 곳에 갈 거야!" 킹덤틴즈인 여러분은 지민이에게 복음과 구원에 대해 어떻게 조언해 줄 수 있을까요?
+                💬 친한 친구가 인터넷에 떠도는 기독교를 비하하는 글을 보여주며 "야, 요즘 누가 교회 가냐? 교회 다녀봤자 아무 소용없어. 네가 믿는 하나님이 널 도와주긴 해?"라며 나의 신앙을 은근히 무시하고 조롱합니다. 앗수르의 조롱 앞에서도 당당히 엎드렸던 '히스기야의 기도'를 배운 킹덤틴즈로서, 이런 상황에서 나는 어떤 마음가짐을 가져야 하며, 하나님께 어떻게 기도로 SOS를 쳐야 할지 적어보세요.
               </p>
-              <div class="text-[10px] text-indigo-700 font-medium"><strong>조언 포인트:</strong> 착한 행실이나 나의 생각만으로는 영혼의 병을 고칠 수 없으며, 예수 그리스도의 은혜와 복음을 받아들이는 겸손한 믿음이 구원의 길임을 전해 주세요.</div>
             </div>
 
             <div class="space-y-2 mt-4">
-              <textarea id="ans-fri-5" rows="4" placeholder="친구 지민이에게 전해줄 진심 어린 복음의 카드를 작성해 주세요... (3자 이상 입력)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 text-base" oninput="checkFriSubjective()"></textarea>
+              <textarea id="ans-fri-5" rows="4" placeholder="조롱하는 친구 앞에서도 흔들리지 않는 나의 믿음의 고백과 기도를 작성해 주세요... (3자 이상 입력)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 text-base" oninput="checkFriSubjective()"></textarea>
             </div>
           </div>
         </div>
@@ -816,11 +781,11 @@
           <div class="flex justify-between items-start border-b border-amber-200 pb-3">
             <div>
               <span id="rep-stage-badge" class="bg-amber-600 text-white text-[9px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">월요일 큐티 완료</span>
-              <h2 id="rep-title" class="text-base md:text-xl font-black text-slate-900 mt-1">1단계: 아람 장군 나아만과 어린 소녀의 소식</h2>
+              <h2 id="rep-title" class="text-base md:text-xl font-black text-slate-900 mt-1">1단계: 앗수르의 침략과 랍사게의 조롱</h2>
               <p class="text-[11px] text-slate-600 mt-0.5">내가 직접 찾고 고백한 킹덤틴즈 성찰 카드</p>
             </div>
             <div class="text-right shrink-0">
-              <span class="text-xs font-bold text-amber-800 bg-amber-100/80 px-2.5 py-0.5 rounded">왕하 5장</span>
+              <span class="text-xs font-bold text-amber-800 bg-amber-100/80 px-2.5 py-0.5 rounded">왕하 18-19장</span>
               <p class="text-[9px] text-slate-400 mt-1" id="report-date"></p>
             </div>
           </div>
@@ -832,8 +797,8 @@
 
           <!-- Report Footer Statement -->
           <div class="text-center pt-3 border-t border-amber-200">
-            <p class="text-[11px] text-slate-500 italic">“그의 종들이 나와서 말하여 이르되 내 아버지여 선지자가 당신에게 큰 일을 행하라 명령하였더면 행하지 아니하였으리이까 하물며 당신에게 이르기를 씻어 깨끗하게 하라 함이리이까” (왕하 5:13)</p>
-            <p class="text-[9px] text-amber-800 font-bold mt-1">내 고집을 내려놓고 어린 소녀처럼 담대히 복음을 전하며 주님 말씀에 겸손히 순종합니다.</p>
+            <p class="text-[11px] text-slate-500 italic">“히스기야가 사자의 손에서 편지를 받아보고 여호와의 성전에 올라가서 히스기야가 그 편지를 여호와 앞에 펴놓고 그 앞에서 기도하여 이르되” (왕하 19:14-15)</p>
+            <p class="text-[9px] text-amber-800 font-bold mt-1">출구 없는 위기 앞에서도 당황하지 않고, 살아계신 하나님께 문제를 펴놓고 기도합니다.</p>
           </div>
         </div>
       </div>
@@ -879,7 +844,6 @@
     <span id="alert-msg" class="text-xs font-semibold">알림 메시지</span>
   </div>
 
-  <!-- JavaScript Logic -->
   <script>
     const days = ['mon', 'tue', 'wed', 'thu', 'fri'];
     let currentDay = 'mon';
@@ -902,8 +866,8 @@
       }
     }
 
-    // Restores states specifically mapped to Lesson 16 ('kt16_*' suffix)
-    let unlockedDays = safeGetStorage('kt16_unlocked_days', {
+    // Progression Unlock States (kt17_* namespace)
+    let unlockedDays = safeGetStorage('kt17_unlocked_days', {
       mon: true,
       tue: false,
       wed: false,
@@ -913,24 +877,22 @@
 
     const WEEKLY_ANSWERS = {
       mon: {
-        1: ["나병"],
-        2: ["선지자"],
-        3: ["하나님"],
-        4: ["내게로"]
+        1: ["산헤립"],
+        2: ["여호와"],
+        3: ["신들"],
+        4: ["펴놓고"]
       },
       tue: {
-        101: ["요단 강", "요단강", "요단 강에", "요단강에"],
-        102: ["일곱", "7"],
-        2: ["생각"],
-        3: ["순종"],
-        4: ["신"]
+        1: ["하나님"],
+        2: ["구원"],
+        3: ["사자"],
+        4: ["죽임", "살해"]
       },
       thu: {
-        1: ["소녀"],
-        2: ["모든 사람", "모든사람"],
-        301: ["생각"],
-        302: ["겸손"],
-        4: ["세례"]
+        1: ["살아계신 하나님", "살아 계신 하나님"],
+        2: ["여호와 하나님", "여호와하나님"],
+        3: ["하나님"],
+        4: ["다윗"]
       },
       fri: {
         1: 2, // X is Choice 2
@@ -940,7 +902,7 @@
       }
     };
 
-    let daySolvedState = safeGetStorage('kt16_day_solved_state', {
+    let daySolvedState = safeGetStorage('kt17_day_solved_state', {
       mon: { 1: false, 2: false, 3: false, 4: false, 5: false },
       tue: { 1: false, 2: false, 3: false, 4: false, 5: false },
       wed: { reflex: false },
@@ -948,8 +910,9 @@
       fri: { 1: false, 2: false, 3: false, 4: false, 5: false }
     });
 
-    let friSelectedChoices = safeGetStorage('kt16_fri_selected', { 1: null, 2: null, 3: null, 4: null });
+    let friSelectedChoices = safeGetStorage('kt17_fri_selected', { 1: null, 2: null, 3: null, 4: null });
 
+    // Left Panel dynamic Bible text content based on day
     function updateLeftBibleContent(day) {
       const bibleDiv = document.getElementById('left-content-bible');
       const leftPanelTitle = document.getElementById('left-panel-title');
@@ -958,60 +921,113 @@
 
       if (day === 'mon') {
         if (leftPanelTitle) leftPanelTitle.innerHTML = `<i class="fa-solid fa-scroll text-amber-500"></i> 성경 말씀 읽기`;
-        if (leftPanelMeta) leftPanelMeta.textContent = "열왕기하 5:1-8";
+        if (leftPanelMeta) leftPanelMeta.textContent = "열왕기하 18:13 ~ 19:14 (전체 말씀)";
         bibleDiv.innerHTML = `
           <p class="text-xs md:text-sm text-amber-800 font-bold border-l-2 border-amber-500 pl-2 bg-amber-50/50 py-1.5 rounded-r">
-            💡 1단계 말씀: 나아만 장군과 포로 이스라엘 소녀 (왕하 5:1-8)
+            💡 1단계 본문: 앗수르의 침략과 랍사게의 조롱, 그리고 편지를 펴놓은 기도 (왕하 18:13-19:14)
           </p>
-          <div class="space-y-4 mt-4 text-[14px] leading-relaxed">
-            <p><strong class="text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded mr-1">1</strong> 아람 왕의 군대 장관 나아만은 그의 주인 앞에서 크고 존귀한 자니 이는 여호와께서 전에 그에게 아람을 구원하게 하셨음이라 그는 큰 용사이나 나병환자더라</p>
-            <p><strong class="text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded mr-1">2</strong> 전에 아람 사람이 떼를 지어 나가서 이스라엘 땅에서 어린 소녀 하나를 잡으매 그가 나아만의 아내에게 수종들더니</p>
-            <p><strong class="text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded mr-1">3</strong> 그의 여주인에게 이르되 우리 주인이 사마리아에 계신 선지자 앞에 계셨으면 좋겠나이다 그가 그 나병을 고치리이다 하는지라</p>
-            <p><strong class="text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded mr-1">4</strong> 나아만이 들어가서 그의 주인께 아뢰어 이르되 이스라엘 땅에서 온 소녀의 말이 이러이러하더이다 하니</p>
-            <p><strong class="text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded mr-1">5</strong> 아람 왕이 이르되 갈지어다 이제 내가 이스라엘 왕에게 글을 보내리라 하더라 나아만이 곧 떠날새 은 십 달란트와 금 육천 개와 의복 열 벌을 가지고 가서</p>
-            <p><strong class="text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded mr-1">6</strong> 이스라엘 왕에게 그 글을 전하니 일렀으되 내가 내 신하 나아만을 당신에게 보내오니 이 글이 당신에게 이르거든 당신은 그의 나병을 고쳐 주소서 하였더라</p>
-            <p><strong class="text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded mr-1">7</strong> 이스라엘 왕이 그 글을 읽고 자기 옷을 찢으며 이르되 내가 사람을 죽이고 살리는 하나님이냐 그가 어찌하여 사람을 내게로 보내 그의 나병을 고치라 하느냐 너희는 어찌하여 그 왕이 틈을 타서 나와 더불어 시비하려 하는지 생각하라 하니라</p>
-            <p><strong class="text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded mr-1">8</strong> 하나님의 사람 엘리사가 이스라엘 왕이 자기의 옷을 찢었다 함을 듣고 왕에게 사람을 보내 이르되 왕이 어찌하여 옷을 찢었나이까 그 사람을 내게로 오게 하소서 그가 이스라엘 중에 선지자가 있는 줄을 알리이다 하니라</p>
+          <div class="space-y-3 mt-4 text-[13px] md:text-[14px] leading-relaxed max-h-[550px] overflow-y-auto pr-2 border border-slate-100 p-3 rounded-xl bg-slate-50/50">
+            <p><strong class="text-slate-900 bg-amber-100 px-1 py-0.5 rounded mr-1">18:13</strong> 히스기야 왕 제십사년에 앗수르의 왕 산헤립이 올라와서 유다 모든 견고한 성읍들을 치서 점령하매</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">18:14</strong> 유다의 왕 히스기야가 라기스로 사람을 보내어 앗수르 왕에게 이르되 내가 범죄하였나이다 나를 떠나 돌아가소서 왕이 내게 지우시는 것을 내가 당하리이다 하였더니 앗수르 왕이 곧 은 삼백 달란트와 금 삼십 달란트를 정하여 유다 왕 히스기야에게 내게 한지라</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">18:15</strong> 히스기야가 이에 여호와의 성전과 왕궁 곳간에 있는 은을 다 주었고</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">18:16</strong> 또 그때에 유다 왕 히스기야가 여호와의 성전 문에 금과 자기가 모든 기둥에 입힌 금을 벗겨 모두 앗수르 왕에게 주었더라</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">18:17</strong> 앗수르 왕이 타르단과 랍사리스와 랍사게로 하여금 대군을 거느리고 라기스에서부터 예루살렘으로 가서 히스기야 왕을 치게 하매 그들이 올라가서 예루살렘에 이르니라 그들이 올라가서 윗못 수도 곁 곧 세탁자의 밭에 있는 큰 길에 이르러 서니라</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">18:18</strong> 그들이 왕을 부르매 힐기야의 아들인 궁내대신 엘리야김과 서기관 십나와 아삽의 아들 사관 요아가 그에게 나가니</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">18:19</strong> 랍사게가 그들에게 이르되 너희는 히스기야에게 말하라 대왕 앗수르 왕의 말씀이 네가 의뢰하는 이 의뢰가 무엇이냐</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">18:20</strong> 네가 싸울 계교와 용력이 있다고 마땅히 말하느냐 네가 누구를 믿고 나를 반역하였느냐</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">18:21</strong> 이제 네가 너를 위하여 저 상한 갈대 지팡이 애굽을 의뢰하도다 사람이 그것을 의지하면 그의 손에 찔려 들어갈지라 애굽의 왕 바로는 그에게 의뢰하는 모든 자에게 이와 같으니라</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">18:22</strong> 너희가 내게 이르기를 우리는 우리 하나님 여호와를 의뢰하노라 하리라마는 히스기야가 그들의 산당들과 제단을 제거하고 유다와 예루살렘 사람에게 명령하기를 예루살렘 이 제단 앞에서만 예배하라 하지 아니하였느냐 하셨나니</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">18:23</strong> 청하건대 이제 너는 내 주 앗수르 왕과 내기하라 네가 만일 말 탈 사람을 낼 수 있다면 나는 네게 말 이천 마리를 주리라</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">18:24</strong> 네가 어찌 내 주의 신하 중 지극히 작은 지휘관 한 사람인들 물리치며 애굽을 의뢰하여 그 병거와 마병을 얻을 듯하냐</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">18:25</strong> 내가 어찌 여호와의 뜻이 아니고야 이제 이곳을 멸하러 올라왔겠느냐 여호와께서 전에 내게 이르시기를 이 땅으로 올라와서 치라 하셨느니라 하는지라</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">18:26</strong> 힐기야의 아들 엘리야김과 십나와 요아가 랍사게에게 이르되 우리가 알아듣겠사오니 청하건대 아람 말로 당신의 종들에게 말씀하시고 성위에 있는 백성이 듣는 데서 유다 말로 우리에게 말씀하지 마소서</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">18:27</strong> 랍사게가 그에게 이르되 내 주께서 네 주와 네게만 이 말을 하라고 나를 보내신 것이냐 성위에 앉은 사람들도 너희와 함께 자기의 대변을 먹게 하고 자기의 소변을 마시게 한 것이 아니냐 하고</p>
+            <p><strong class="text-slate-900 bg-amber-100 px-1 py-0.5 rounded mr-1">18:28</strong> 랍사게가 드디어 서서 유다 말로 크게 소리 질러 불러 이르되 너희는 대왕 앗수르 왕의 말씀을 들으라</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">18:29</strong> 왕의 말씀이 너희는 히스기야에게 속지 말라 그가 너희를 내 손에서 건져내지 못하리라</p>
+            <p><strong class="text-slate-900 bg-amber-100 px-1 py-0.5 rounded mr-1">18:30</strong> 또한 히스기야가 너희에게 여호와를 의뢰하라 함을 듣지 말라 그가 이르기를 여호와께서 반드시 우리를 건지실지라 이 성읍이 앗수르 왕의 손에 함락되지 아니하게 하시리라 할지라도</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">18:31</strong> 너희는 히스기야의 말을 듣지 말라 앗수르 왕의 말씀이 너희는 내게 항복하고 내게로 나와라 그리하고 너희는 각각 그의 포도와 무화과를 먹고 또한 각각 자기의 우물 물을 마시라</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">18:32</strong> 내가 와서 너희를 한 지방으로 옮기리니 그곳은 너희 본토와 같은 지방 곧 곡식과 포도주가 있는 지방이요 떡과 포도원이 있는 지방이요 기름 나는 감람나무와 굴이 있는 지방이라 너희가 살고 죽지 아니하리라 히스기야가 너희를 설득하여 이르기를 여호와께서 우리를 건지시리라 하여도 히스기야에게 듣지 말라</p>
+            <p><strong class="text-slate-900 bg-amber-100 px-1 py-0.5 rounded mr-1">18:33</strong> 민족들의 신들 중에 어느 한 신이 그의 땅을 앗수르 왕의 손에서 건진 자가 있느냐</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">18:34</strong> 하맛과 아르밧의 신들이 어디 있으며 스발와임과 헤나와 아와의 신들이 어디 있느냐 그들이 사마리아를 내 손에서 건졌느냐</p>
+            <p><strong class="text-slate-900 bg-amber-100 px-1 py-0.5 rounded mr-1">18:35</strong> 민족의 모든 신들 중에 누가 그의 땅을 내 손에서 건졌기에 여호와가 예루살렘을 내 손에서 건지겠느냐 하셨느니라</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">18:36</strong> 그러나 백성이 잠잠하고 한 마디도 그에게 대답하지 아니하니 이는 왕이 명령하여 대답하지 말라 하였음이라</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">18:37</strong> 이에 힐기야의 아들인 궁내대신 엘리야김과 서기관 십나와 아삽의 아들 사관 요아가 자기의 옷을 찢고 히스기야에게 나아가서 랍사게의 말을 전하니라</p>
+            
+            <div class="border-t border-dashed border-amber-300 my-3"></div>
+
+            <p><strong class="text-slate-900 bg-amber-100 px-1 py-0.5 rounded mr-1">19:1</strong> 히스기야 왕이 듣고 그 옷을 찢고 굵은 베를 두르고 여호와의 전에 들어가서</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:2</strong> 궁내대신 엘리야김과 서기관 십나와 제사장 중 어른들에게 굵은 베를 둘려서 아모스의 아들 선지자 이사야에게로 보내매</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:3</strong> 그들이 이사야에게 이르되 히스기야의 말씀이 오늘은 환난과 징벌과 모욕의 날이라 아이가 태락하려 하나 출산할 힘이 없도다</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:4</strong> 랍사게가 그의 주 앗수르 왕의 말을 받고 와서 살아 계신 하나님을 비방하였으니 당신의 하나님 여호와께서 혹시 그의 말을 들으셨을지라 당신의 하나님 여호와께서 그 들으신 말 때문에 짓짖으실 듯하니 당신은 이 남아 있는 자들을 위하여 기도하소서 하더이다 하니라</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:5</strong> 그리하여 히스기야 왕의 신하들이 이사야에게 나아가니</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:6</strong> 이사야가 그들에게 이르되 너희는 너희 주에게 이렇게 말하라 여호와의 말씀이 너희가 앗수르 왕의 신복에게 들은 바 나를 모욕하는 말 때문에 두려워하지 말라</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:7</strong> 내가 한 영을 그의 속에 두어 그로 소문을 듣고 그의 본국으로 돌아가게 하고 또 그의 본국에서 그에게 칼에 엎드러지게 하리라 하셨느니라 하였더라</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:8</strong> 랍사게가 돌아가다가 앗수르 왕이 라기스를 떠났다 함을 듣고 립나로 가서 앗수르 왕을 만나니 왕이 거기서 립나와 싸우는 중이더라</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:9</strong> 앗수르 왕은 구스 왕 티르하가가 당신과 싸우고자 나왔다 함을 듣고 다시 히스기야에게 사자를 보내며 이르되</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:10</strong> 너희는 유다의 왕 히스기야에게 이같이 말하여 이르기를 네가 믿는 네 하나님이 예루살렘을 앗수르 왕의 손에 넘기지 아니하리라 하는 말에 속지 말라</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:11</strong> 앗수르의 여러 왕이 여러 나라에 행한 바 진멸한 일을 네가 들었나니 네가 어찌 구원을 얻겠느냐</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:12</strong> 내 조상들이 멸하신 여러 민족 곧 고산과 하란과 레셉과 들라살에 있는 에덴 자손을 그 민족들의 신들이 건졌느냐</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:13</strong> 하맛 왕과 아르밧 왕과 스발와임 성의 왕과 헤나와 아와 왕들이 어디 있느냐 하라 하였더라</p>
+            <p><strong class="text-slate-900 bg-amber-100 px-1 py-0.5 rounded mr-1">19:14</strong> 히스기야가 사자의 손에서 편지를 받아보고 여호와의 성전에 올라가서 히스기야가 그 편지를 여호와 앞에 펴놓고</p>
           </div>
         `;
       } else if (day === 'tue') {
         if (leftPanelTitle) leftPanelTitle.innerHTML = `<i class="fa-solid fa-scroll text-orange-500"></i> 성경 말씀 읽기`;
-        if (leftPanelMeta) leftPanelMeta.textContent = "열왕기하 5:9-15";
+        if (leftPanelMeta) leftPanelMeta.textContent = "열왕기하 19:15 ~ 19:37 (전체 말씀)";
         bibleDiv.innerHTML = `
           <p class="text-xs md:text-sm text-orange-850 font-bold border-l-2 border-orange-500 pl-2 bg-orange-50/50 py-1.5 rounded-r mb-3">
-            💡 2단계 말씀: 자존심을 꺾고 몸을 씻은 나아만 (왕하 5:9-15)
+            💡 2단계 본문: 히스기야의 간절한 기도와 하나님의 초자연적 구원 역사 (왕하 19:15-37)
           </p>
-          <div class="space-y-4 text-[14px] leading-relaxed">
-            <p><strong class="text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded mr-1">9</strong> 나아만이 이에 말들과 병거들을 거느리고 이르러 엘리사의 집 문에 서니</p>
-            <p><strong class="text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded mr-1">10</strong> 엘리사가 사자를 그에게 보내 이르되 너는 가서 요단 강에 몸을 일곱 번 씻으라 네 살이 회복되어 깨끗하리라 하는지라</p>
-            <p><strong class="text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded mr-1">11</strong> 나아만이 노하여 물러가며 이르되 내 생각에는 그가 내게로 나와 서서 그의 하나님 여호와의 이름을 부르고 그의 손을 그 부위 위에 흔들어 나병을 고칠까 하였도다</p>
-            <p><strong class="text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded mr-1">12</strong> 다메섹 강 아바나와 발발은 이스라엘 모든 강물보다 낫지 아니하냐 내가 거기서 몸을 씻으면 깨끗하게 되지 아니하랴 하고 몸을 돌려 분노하여 떠나니</p>
-            <p><strong class="text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded mr-1">13</strong> 그의 종들이 나와서 말하여 이르되 내 아버지여 선지자가 당신에게 큰 일을 행하라 명령하였더면 행하지 아니하였으리이까 하물며 당신에게 이르기를 씻어 깨끗하게 하라 함이리이까 하니</p>
-            <p><strong class="text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded mr-1">14</strong> 나아만이 이에 내려가서 하나님의 사람의 말대로 요단 강에 일곱 번 몸을 잠그니 그의 살이 어린 아이의 살 같이 회복되어 깨끗하게 되었더라</p>
-            <p><strong class="text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded mr-1">15</strong> 나아만이 모든 군대와 함께 하나님의 사람에게로 도로 와서 그의 앞에 서서 이르되 내가 이제 이스라엘 외에는 온 천하에 신이 없는 줄을 아나이다 청하건대 당신의 종에게서 예물을 받으소서 하니</p>
+          <div class="space-y-3 text-[13px] md:text-[14px] leading-relaxed max-h-[550px] overflow-y-auto pr-2 border border-slate-100 p-3 rounded-xl bg-slate-50/50">
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:15</strong> 그 앞에서 히스기야가 기도하여 이르되 그룹들 위에 계신 이스라엘의 하나님 여호와여 주는 천하 만국에 홀로 하나님이시라 주께서 천지를 만드셨나이다</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:16</strong> 여호와여 귀를 기울여 들으소서 여호와여 눈을 떠서 보시옵소서 산헤립이 살아 계신 하나님을 비방하러 보낸 말을 들으시옵소서</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:17</strong> 여호와여 앗수르 여러 왕이 과연 여러 민족과 그들의 땅을 아라비아로 만들고</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:18</strong> 또 그들의 신들을 불에 던졌사오니 이는 그들이 신이 아니요 사람의 손으로 만든 것 곧 나무와 돌뿐이므로 멸하였나이다</p>
+            <p><strong class="text-slate-900 bg-orange-100 px-1 py-0.5 rounded mr-1">19:19</strong> 우리 하나님 여호와여 원하건대 이제 우리를 그의 손에서 구원하옵소서 그리하시면 천하 만국이 주 여호와가 홀로 하나님이신 줄 알리이다 하니라</p>
+            <p><strong class="text-slate-900 bg-orange-100 px-1 py-0.5 rounded mr-1">19:20</strong> 아모스의 아들 이사야가 히스기야에게 보내 이르되 이스라엘 하나님 여호와의 말씀이 네가 앗수르 왕 산헤립 때문에 내게 기도하는 것을 내가 들었노라 하셨나이다</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:21</strong> 여호와께서 앗수르 왕에게 대하여 이같이 말씀하시기를 처녀 딸 시온이 너를 멸시하며 너를 비웃었으며 딸 예루살렘이 너를 향하여 머리를 흔들었느니라</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:22</strong> 네가 누구를 훼방하였으며 비방하였느냐 누구를 향하여 소리를 높였으며 눈을 높이 떴느냐 이스라엘의 거룩한 자에게 그리하였도다</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:23</strong> 네가 사자들을 통하여 주를 비방하여 이르기를 내가 많은 병거를 거느리고 산들의 정상에 올라가며 레바논 깊은 곳에 이르러 그 높은 백향목과 아름다운 잣나무를 베고 내가 그 먼 곳의 숙소에 들어가며 그의 비옥한 동산의 숲에 이르리라</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:24</strong> 내가 땅을 파서 이방의 물을 마셨고 나의 발바닥으로 애굽의 모든 강들을 말렸노라 하였도다</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:25</strong> 네가 듣지 못하였느냐 이 일은 내가 태초부터 행하였고 상고부터 정한 바라 이제 내가 이루어 너로 견고한 성들을 헐어 돌무더기가 되게 함이니라</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:26</strong> 그러므로 거기에 거주하는 백성의 힘이 약하여 놀라며 다급하였나니 그들은 들의 풀 같고 푸른 채소 같고 지붕의 풀 같고 자라기 전에 말란 곡초 같았느니라</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:27</strong> 네 거주와 네 출입과 네가 나를 향하여 분노하는 것을 내가 다 아노니</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:28</strong> 네가 나를 향한 분노와 네 교만한 말이 내 귀에 들렸도다 그러므로 내가 갈고리를 네 코에 꿰고 갈마를 네 입에 물려 너를 오던 길로 되돌아가지 하리라 하셨나이다</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:29</strong> 또 네게 보일 징조가 이러하니 너희가 금년에는 스스로 자라난 것을 먹고 내년에는 그것에서 난 것을 먹되 제삼년에는 심고 거두며 포도원을 심고 그 열매를 먹으리라</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:30</strong> 유다 족속 중에서 피하고 남은 자는 다시 아래로 뿌리를 내리고 위로 열매를 맺을지라</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:31</strong> 남은 자는 예루살렘에서부터 나올 것이요 피하는 자는 시온 산에서부터 나오리니 여호와의 열심이 이 일을 이루리라 하셨나이다 하니라</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:32</strong> 그러므로 여호와께서 앗수르 왕을 가리켜 이르시기를 그가 이 성에 이르지 못하며 이리로 화살을 쏘지 못하며 방패를 성을 향하여 세우지 못하며 치려고 토성을 쌓지도 못하고</p>
+            <p><strong class="text-slate-900 bg-slate-100 px-1 py-0.5 rounded mr-1">19:33</strong> 오던 길로 돌아가고 이 성에 이르지 못하리라 하셨으니 이는 여호와의 말씀이시니라</p>
+            <p><strong class="text-slate-900 bg-orange-100 px-1 py-0.5 rounded mr-1">19:34</strong> 내가 나와 나의 종 다윗을 위하여 이 성을 보호하여 구원하리라 하셨나이다</p>
+            <p><strong class="text-slate-900 bg-orange-100 px-1 py-0.5 rounded mr-1">19:35</strong> 이 밤에 여호와의 사자가 나와서 앗수르 진영에서 군사 열팔만 오천 명을 친지라 아침에 일찍이 일어나 보니 다 송장이 되었더라</p>
+            <p><strong class="text-slate-900 bg-orange-100 px-1 py-0.5 rounded mr-1">19:36</strong> 앗수르 왕 산헤립이 떠나 돌아가서 니느웨에 거주하더니</p>
+            <p><strong class="text-slate-900 bg-orange-100 px-1 py-0.5 rounded mr-1">19:37</strong> 그가 그의 신 니스록의 신전에서 경배할 때에 아드람멜렉과 샤레세르가 그를 칼로 쳐죽이고 아라랏 땅으로 그들이 도망하매 그 아들 에살하돈이 대신하여 왕이 되니라</p>
           </div>
         `;
       } else if (day === 'thu') {
-        if (leftPanelTitle) leftPanelTitle.innerHTML = `<i class="fa-solid fa-scroll text-indigo-500"></i> 말씀 & 대교리문답`;
-        if (leftPanelMeta) leftPanelMeta.textContent = "왕하 5장 & 대교리문답 60문";
+        if (leftPanelTitle) leftPanelTitle.innerHTML = `<i class="fa-solid fa-scroll text-indigo-500"></i> 말씀 & 소교리문답`;
+        if (leftPanelMeta) leftPanelMeta.textContent = "왕하 18-19장 & 소교리문답 56문";
         bibleDiv.innerHTML = `
           <p class="text-xs md:text-sm text-indigo-800 font-bold border-l-2 border-indigo-500 pl-2 bg-indigo-50/50 py-1.5 rounded-r mb-3">
-            💡 4단계 말씀: 복음과 열방 구원
+            💡 4단계 말씀: 기도의 권능과 거룩하신 하나님의 이름
           </p>
-          <div class="space-y-4 text-[14px] leading-relaxed mb-4 border border-indigo-100 p-3 rounded-xl bg-slate-50/50">
-            <p class="text-xs font-black text-indigo-950 border-b border-indigo-100 pb-1 flex items-center gap-1"><i class="fa-solid fa-book"></i> 열왕기하 5장 3절, 14-15절</p>
-            <p><strong>3</strong> 그의 여주인에게 이르되 우리 주인이 사마리아에 계신 선지자 앞에 계셨으면 좋겠나이다 그가 그 나병을 고치리이다 하는지라</p>
-            <p><strong>14</strong> 나아만이 이에 내려가서 하나님의 사람의 말대로 요단 강에 일곱 번 몸을 잠그니 그의 살이 어린 아이의 살 같이 회복되어 깨끗하게 되었더라</p>
-            <p><strong>15</strong> 나아만이 모든 군대와 함께 하나님의 사람에게로 도로 와서 그의 앞에 서서 이르되 내가 이제 이스라엘 외에는 온 천하에 신이 없는 줄을 아나이다</p>
+          <div class="space-y-3 text-[13px] md:text-[14px] leading-relaxed max-h-[300px] overflow-y-auto pr-1 border border-indigo-100 p-3 rounded-xl bg-slate-50/50 mb-4">
+            <p class="text-xs font-black text-indigo-950 border-b border-indigo-100 pb-1 flex items-center gap-1"><i class="fa-solid fa-book"></i> 열왕기하 19장 전체 핵심 구절</p>
+            <p><strong>왕하 19:14</strong> 히스기야가 사자의 손에서 편지를 받아보고 여호와의 성전에 올라가서 히스기야가 그 편지를 여호와 앞에 펴놓고</p>
+            <p><strong>왕하 19:15</strong> 그 앞에서 히스기야가 기도하여 이르되 그룹들 위에 계신 이스라엘의 하나님 여호와여 주는 천하 만국에 홀로 하나님이시라 주께서 천지를 만드셨나이다</p>
+            <p><strong>왕하 19:16</strong> 여호와여 귀를 기울여 들으소서 여호와여 눈을 떠서 보시옵소서 산헤립이 살아 계신 하나님을 비방하러 보낸 말을 들으시옵소서</p>
+            <p><strong>왕하 19:19</strong> 우리 하나님 여호와여 원하건대 이제 우리를 그의 손에서 구원하옵소서 그리하시면 천하 만국이 주 여호와가 홀로 하나님이신 줄 알리이다 하니라</p>
+            <p><strong>왕하 19:34</strong> 내가 나와 나의 종 다윗을 위하여 이 성을 보호하여 구원하리라 하셨나이다</p>
+            <p><strong>왕하 19:35</strong> 이 밤에 여호와의 사자가 나와서 앗수르 진영에서 군사 열팔만 오천 명을 친지라 아침에 일찍이 일어나 보니 다 송장이 되었더라</p>
           </div>
           
           <div class="p-3.5 bg-indigo-50/70 border border-indigo-100 rounded-xl space-y-2">
             <p class="text-xs text-indigo-950 font-bold leading-normal">
-              📌 웨스트민스터 대교리문답 60문 전체
+              📌 웨스트민스터 소교리문답 56문 전체
             </p>
             <p class="text-xs text-slate-850 font-semibold bg-white p-3 rounded-lg border border-indigo-50 shadow-sm leading-relaxed text-justify">
-              <strong>문 60. 복음을 전혀 들어본 적이 없어서 예수 그리스도를 알지 못하고 믿지 못하는 사람들은 본성의 빛을 따라 사는 것으로 구원을 받을 수 있습니까?</strong><br><br>
-              답. 복음을 전혀 들어본 적이 없어서 예수 그리스도를 알지 못하고 믿지 않는 사람들은 본성의 빛을 따라, 또는 자신들이 믿는 종교의 법을 따라 아무리 열심히 산다 하더라도 구원을 받을 수 없습니다.
+              <strong>문 56. 제3계명에 첨가한 이유는 무엇입니까?</strong><br><br>
+              답. 제3계명에 첨가한 이유는 이 계명을 범하는 자가 비록 사람들로부터 형벌을 피할 수 있을지라도 주 우리 하나님께서는 그들이 그분의 의로우신 심판을 피하지는 못하게 하신다는 것입니다.
             </p>
           </div>
         `;
@@ -1046,11 +1062,11 @@
         fri: "금요일 퀴즈를 완료하셨나요?"
       };
       const completeDescs = {
-        mon: "나아만의 문제와 어린 소녀의 말을 다 채웠다면 결과 리포트를 인쇄해 보세요.",
-        tue: "요단 강에 순종하여 깨끗함을 얻은 고백 리포트를 캡처해 보세요.",
-        wed: "어린 소녀의 입술과 순종을 소화하고 느낀 고백 리포트를 캡처해 보세요.",
-        thu: "하나님 나라 관점에서 '복음'의 성찰 리포트를 캡처해 보세요.",
-        fri: "이번 주 16과 학습을 성공적으로 수료하셨습니다! 전체 완성 카드를 소장하세요."
+        mon: "앗수르의 조롱과 히스기야의 편지 기도를 다 채웠다면 결과 리포트를 인쇄해 보세요.",
+        tue: "여호와의 사자가 보여준 하룻밤의 승리 리포트를 캡처해 보세요.",
+        wed: "위기 속에서 기도하는 킹덤틴즈의 결단 고백 리포트를 캡처해 보세요.",
+        thu: "하나님 나라 관점에서 '기도'의 성찰 리포트를 캡처해 보세요.",
+        fri: "이번 주 17과 학습을 성공적으로 수료하셨습니다! 전체 완성 카드를 소장하세요."
       };
       const completeBtnText = {
         mon: "월요일 결과 리포트 만들기",
@@ -1087,52 +1103,49 @@
           leftReading.innerHTML = `
             <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-xl">
               <p class="text-xs font-bold text-amber-900">💡 3단계 킹덤 리딩 칼럼</p>
-              <p class="text-[11px] text-amber-800 mt-1">소녀의 복음 선포와 나아만의 순종 스토리를 정독해 보세요.</p>
+              <p class="text-[11px] text-amber-800 mt-1">절체절명의 위기에서 기도 하나로 반전을 이뤄낸 히스기야의 스토리를 정독해 보세요.</p>
             </div>
 
             <div class="space-y-6 pr-1 text-slate-800 mt-4 text-[14px]">
               <section>
                 <h3 class="text-base font-extrabold text-amber-950 border-b border-amber-100 pb-1 mb-2.5 flex items-center gap-1.5">
-                  <span>다 가졌지만 다 잃어가는 영웅 😥</span>
+                  <span>최강 제국의 침략과 쏟아지는 조롱 😱</span>
                 </h3>
                 <p class="leading-relaxed text-justify">
-                  나아만은 이스라엘을 괴롭히던 강대국 아람의 최고 장군이었어. ⚔️ 나라를 구한 영웅이라 왕의 총애를 듬뿍 받았고, 겉으로 보기엔 세상에서 제일 잘나가는 사람이었지. 하지만 그런 그에게도 남몰래 썩어 들어가는 끔끔한 비밀이 있었어. 바로 고칠 수 없는 악성 피부병, '나병'에 걸린 거야. 아무리 돈이 많고 힘이 세도 이 병 앞에서는 무용지물이었어. 몸도 마음도 쇠약해져 가고 있었지.
+                  다윗처럼 하나님을 잘 섬기던 히스기야 왕에게도 엄청난 위기가 찾아왔어. 당시 세상을 씹어 먹던 최강대국 앗수르가 남 유다를 침공한 거야. 앗수르의 사령관 랍사게는 성벽 앞에 서서 큰 소리로 조롱했어. "야! 너희가 믿는 하나님이 너희를 구해줄 것 같아? 앗수르를 이긴 신은 아무도 없어! 항복해!"라며 살아계신 하나님을 깎아내렸지.
                 </p>
               </section>
 
               <section>
                 <h3 class="text-base font-extrabold text-amber-950 border-b border-amber-100 pb-1 mb-2.5 flex items-center gap-1.5">
-                  <span>작은 소녀의 입술에서 시작된 나비효과 👧</span>
+                  <span>협박 편지를 들고 성전으로 달려간 왕 🏃‍♂️💨</span>
                 </h3>
                 <p class="leading-relaxed text-justify">
-                  그런데 나아만의 집에 포로로 잡혀 와 있던 이스라엘의 작은 소녀가 놀라운 이야기를 꺼내! 🗣️ "우리 주인이 사마리아에 계신 선지자 앞에 가시면 나병을 고칠 수 있을 텐데요!" 이 당돌한 소녀의 말 한마디가 나아만의 인생을 뒤흔들었어. 이스라엘의 왕조차 두려움에 떨며 믿지 못했던 하나님의 능력을, 이 작은 소녀는 굳게 믿고 있었고 그 믿음의 말이 나아만에게는 최고의 복음(기쁜 소식)이 된 거야!
+                  앗수르 왕 산헤립은 항복하라는 끔찍한 협박 편지까지 보냈어. 도저히 이길 방법이 없는 상황, 히스기야는 어떻게 했을까? 다른 나라(애굽 등)에 도와달라고 매달렸을까? 아니! 그는 그 무시무시한 편지를 들고 곧장 하나님의 성전으로 달려갔어. 그리고 편지를 쫙 펼쳐놓고 엎드려 부르짖었어. "하나님! 저들이 살아계신 하나님을 비방하는 것을 들으시옵소서! 제발 우리를 구원해 주세요!".
                 </p>
               </section>
 
               <section>
                 <h3 class="text-base font-extrabold text-amber-950 border-b border-amber-100 pb-1 mb-2.5 flex items-center gap-1.5">
-                  <span>고집을 꺾고 순종의 강물로 퐁당! 🌊</span>
+                  <span>하룻밤 사이의 엄청난 반전! 💥</span>
                 </h3>
                 <p class="leading-relaxed text-justify">
-                  한줄기 희망을 품고 엘리사 선지자를 찾아간 나아만. 그런데 엘리사는 얼굴도 안 비치고 사자를 통해 "요단 강에 가서 일곱 번 씻으시오"라는 말만 툭 던지는 거 있지? 💦 자존심이 상한 나아만은 "내 생각에는 선지자가 직접 나와서 상처 위에 손을 얹고 기도해 줄 줄 알았는데!"라며 화를 내고 돌아가려 했어. 하지만 지혜로운 부하들의 설득 덕분에, 나아만은 뻣뻣한 자존심을 꺾고 겸손히 요단 강 물에 몸을 담갔어.
+                  히스기야가 겸손히 회개하며 기도할 때, 놀라운 반전이 시작됐어. 하나님은 이사야 선지자를 통해 "내 이름을 모욕한 자를 벌하겠다!"라고 약속하셨지. 그리고 바로 그날 밤, 여호와의 사자가 나타나 앗수르 군대 18만 5천 명을 단숨에 쓸어버리셨어! 걱정으로 밤을 지새우던 이스라엘은 아침에 일어나서 깜짝 놀랐지. 하나님께서 대신 싸워주신 완벽한 승리였어!
                 </p>
               </section>
 
               <section>
                 <h3 class="text-base font-extrabold text-amber-950 border-b border-amber-100 pb-1 mb-2.5 flex items-center gap-1.5">
-                  <span>육체를 넘어 영혼까지 깨끗하게! 💖</span>
+                  <span>진짜 승리자, 부활하신 예수님! 👑</span>
                 </h3>
                 <p class="leading-relaxed text-justify">
-                  일곱 번 몸을 씻고 나오자, 거짓말처럼 썩어가던 피부가 어린아이의 살같이 뽀얗게 변했어! 🎉 기적을 체험한 나아만은 거만했던 태도를 버리고 겸손하게 엘리사에게 돌아와 고백했지. "이스라엘 외에는 온 천하에 참 신이 없는 줄을 이제 알았습니다!" 우상을 섬기던 이방인이 오직 하나님만 예배하기로 결단한 거야. 육체의 병만 나은 게 아니라 영혼의 구원까지 얻은 놀라운 사건이었어!
+                  세상에서는 악한 세력이 득세하고 교회가 모욕을 당하는 것처럼 보일 때가 있어. 하지만 걱정하지 마! 예수님은 부활하심으로 우리를 위협하는 가장 큰 대적, 사탄에게 이미 완벽하게 승리하셨거든! 승리자이신 그리스도를 믿고 기도할 때, 우리 삶의 꽉 막힌 방탈출 같은 위기도 놀라운 승리로 바뀌게 될 거야.
                 </p>
               </section>
 
               <section>
-                <h3 class="text-base font-extrabold text-amber-950 border-b border-amber-100 pb-1 mb-2.5 flex items-center gap-1.5">
-                  <span>모든 민족을 고치시는 우리의 왕, 예수님! 👑</span>
-                </h3>
                 <p class="leading-relaxed text-justify font-bold italic mt-4 text-slate-900 border-l-2 border-amber-400 pl-3.5 bg-amber-50/25 py-2.5 rounded-r">
-                  하나님은 이스라엘 사람만 사랑하시는 게 아니야. 원수 나라 장군 나아만까지도 구원하기 원하시는 온 세상의 왕이셔! 참된 선지자이신 예수님은 이스라엘을 넘어 온 민족과 세상을 치유하기 위해 오셨고, 십자가의 은혜로 우리의 영혼을 깨끗하게 회복시켜 주셨어. 이제 우리 킹덤틴즈가 나설 차례야! 우리도 나아만의 집에서 복음을 전했던 작은 소녀처럼, 예수님의 구원 소식을 온 세상에 담대하게 전하는 멋진 하나님 나라 백성이 되자! 🌟
+                  내 힘으로 도저히 해결할 수 없는 위기 앞에서도 당황하지 않고, 살아계신 하나님께 문제를 펼쳐놓고 기도하는 킹덤틴즈가 되겠습니다! 🌟
                 </p>
               </section>
             </div>
@@ -1141,7 +1154,7 @@
         const leftPanelTitle = document.getElementById('left-panel-title');
         const leftPanelMeta = document.getElementById('left-panel-meta');
         if (leftPanelTitle) leftPanelTitle.innerHTML = `<i class="fa-solid fa-book-open text-amber-600"></i> 3단계 킹덤 리딩`;
-        if (leftPanelMeta) leftPanelMeta.textContent = "나아만 장군 이야기";
+        if (leftPanelMeta) leftPanelMeta.textContent = "절체절명의 위기, 하룻밤의 기적";
         if (readingTabLabel) readingTabLabel.textContent = "📖 킹덤 리딩 읽기";
       } else if (day === 'fri') {
         if (leftBible) leftBible.classList.add('hidden');
@@ -1151,7 +1164,7 @@
           leftQuizIntro.innerHTML = `
             <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-xl">
               <p class="text-xs font-bold text-emerald-900">🎯 금요일 최종 퀴즈 가이드</p>
-              <p class="text-[11px] text-emerald-800 mt-1">한 주간 학습한 왕하 5장의 전체 내용을 리마인드하며 평가에 응시해 보세요.</p>
+              <p class="text-[11px] text-emerald-800 mt-1">한 주간 학습한 히스기야와 앗수르 전쟁 전체 내용을 리마인드하며 평가에 응시해 보세요.</p>
             </div>
             <div class="space-y-4 text-xs md:text-sm text-slate-600 mt-4 leading-relaxed">
               <p>📍 5단계 퀴즈는 자습용이므로, 선택 시 즉시 정오답 색상 힌트나 강렬한 강조 효과가 나타나지 않습니다.</p>
@@ -1186,7 +1199,7 @@
       const el = document.getElementById(id);
       if (el) {
         try {
-          localStorage.setItem(`kt16_input_${id}`, el.value);
+          localStorage.setItem(`kt17_input_${id}`, el.value);
         } catch(e) {}
       }
     }
@@ -1196,11 +1209,11 @@
       if (day === 'mon') {
         inputsToRestore = ['ans-mon-1', 'ans-mon-2', 'ans-mon-3', 'ans-mon-4', 'ans-mon-5'];
       } else if (day === 'tue') {
-        inputsToRestore = ['ans-tue-1-1', 'ans-tue-1-2', 'ans-tue-2', 'ans-tue-3', 'ans-tue-4', 'ans-tue-5'];
+        inputsToRestore = ['ans-tue-1', 'ans-tue-2', 'ans-tue-3', 'ans-tue-4', 'ans-tue-5'];
       } else if (day === 'wed') {
         inputsToRestore = ['ans-wed-reflex'];
       } else if (day === 'thu') {
-        inputsToRestore = ['ans-thu-1', 'ans-thu-2', 'ans-thu-3-1', 'ans-thu-3-2', 'ans-thu-4', 'ans-thu-5'];
+        inputsToRestore = ['ans-thu-1', 'ans-thu-2', 'ans-thu-3', 'ans-thu-4', 'ans-thu-5'];
       } else if (day === 'fri') {
         inputsToRestore = ['ans-fri-5'];
       }
@@ -1209,7 +1222,7 @@
         const el = document.getElementById(id);
         if (el) {
           try {
-            const savedVal = localStorage.getItem(`kt16_input_${id}`);
+            const savedVal = localStorage.getItem(`kt17_input_${id}`);
             if (savedVal !== null) {
               el.value = savedVal;
             }
@@ -1219,64 +1232,28 @@
     }
 
     function checkMonAnswer(step) {
-      if (step === 1) {
-        const input = document.getElementById('ans-mon-1') ? document.getElementById('ans-mon-1').value.trim() : "";
-        saveInputValue('ans-mon-1');
-        if (WEEKLY_ANSWERS.mon[1].includes(input)) revealCorrect('mon', 1);
-      } 
-      else if (step === 2) {
-        const input = document.getElementById('ans-mon-2') ? document.getElementById('ans-mon-2').value.trim() : "";
-        saveInputValue('ans-mon-2');
-        if (WEEKLY_ANSWERS.mon[2].includes(input)) revealCorrect('mon', 2);
-      } 
-      else if (step === 3) {
-        const input = document.getElementById('ans-mon-3') ? document.getElementById('ans-mon-3').value.trim() : "";
-        saveInputValue('ans-mon-3');
-        if (WEEKLY_ANSWERS.mon[3].includes(input)) revealCorrect('mon', 3);
-      } 
-      else if (step === 4) {
-        const input = document.getElementById('ans-mon-4') ? document.getElementById('ans-mon-4').value.trim() : "";
-        saveInputValue('ans-mon-4');
-        if (WEEKLY_ANSWERS.mon[4].includes(input)) revealCorrect('mon', 4);
-      }
-      else if (step === 5) {
+      if (step >= 1 && step <= 4) {
+        const input = document.getElementById(`ans-mon-${step}`) ? document.getElementById(`ans-mon-${step}`).value.trim() : "";
+        saveInputValue(`ans-mon-${step}`);
+        if (WEEKLY_ANSWERS.mon[step].includes(input)) revealCorrect('mon', step);
+      } else if (step === 5) {
         const text = document.getElementById('ans-mon-5') ? document.getElementById('ans-mon-5').value.trim() : "";
         saveInputValue('ans-mon-5');
         daySolvedState.mon[5] = text.length >= 3;
-        safeSetStorage('kt16_day_solved_state', daySolvedState);
+        safeSetStorage('kt17_day_solved_state', daySolvedState);
       }
     }
 
     function checkTueAnswer(step) {
-      if (step === 1) {
-        const input1 = document.getElementById('ans-tue-1-1') ? document.getElementById('ans-tue-1-1').value.trim() : "";
-        const input2 = document.getElementById('ans-tue-1-2') ? document.getElementById('ans-tue-1-2').value.trim() : "";
-        saveInputValue('ans-tue-1-1');
-        saveInputValue('ans-tue-1-2');
-        if (WEEKLY_ANSWERS.tue[101].includes(input1) && WEEKLY_ANSWERS.tue[102].includes(input2)) {
-          revealCorrect('tue', 1);
-        }
-      }
-      else if (step === 2) {
-        const input = document.getElementById('ans-tue-2') ? document.getElementById('ans-tue-2').value.trim() : "";
-        saveInputValue('ans-tue-2');
-        if (WEEKLY_ANSWERS.tue[2].includes(input)) revealCorrect('tue', 2);
-      }
-      else if (step === 3) {
-        const input = document.getElementById('ans-tue-3') ? document.getElementById('ans-tue-3').value.trim() : "";
-        saveInputValue('ans-tue-3');
-        if (WEEKLY_ANSWERS.tue[3].includes(input)) revealCorrect('tue', 3);
-      }
-      else if (step === 4) {
-        const input = document.getElementById('ans-tue-4') ? document.getElementById('ans-tue-4').value.trim() : "";
-        saveInputValue('ans-tue-4');
-        if (WEEKLY_ANSWERS.tue[4].includes(input)) revealCorrect('tue', 4);
-      }
-      else if (step === 5) {
+      if (step >= 1 && step <= 4) {
+        const input = document.getElementById(`ans-tue-${step}`) ? document.getElementById(`ans-tue-${step}`).value.trim() : "";
+        saveInputValue(`ans-tue-${step}`);
+        if (WEEKLY_ANSWERS.tue[step].includes(input)) revealCorrect('tue', step);
+      } else if (step === 5) {
         const text = document.getElementById('ans-tue-5') ? document.getElementById('ans-tue-5').value.trim() : "";
         saveInputValue('ans-tue-5');
         daySolvedState.tue[5] = text.length >= 3;
-        safeSetStorage('kt16_day_solved_state', daySolvedState);
+        safeSetStorage('kt17_day_solved_state', daySolvedState);
       }
     }
 
@@ -1284,35 +1261,21 @@
       const text = document.getElementById('ans-wed-reflex') ? document.getElementById('ans-wed-reflex').value.trim() : "";
       saveInputValue('ans-wed-reflex');
       daySolvedState.wed.reflex = text.length >= 3;
-      safeSetStorage('kt16_day_solved_state', daySolvedState);
+      safeSetStorage('kt17_day_solved_state', daySolvedState);
     }
 
     function checkThuAnswer(step) {
       let isCorrect = false;
 
-      if (step === 1) {
-        const input = document.getElementById('ans-thu-1') ? document.getElementById('ans-thu-1').value.trim() : "";
-        saveInputValue('ans-thu-1');
-        isCorrect = WEEKLY_ANSWERS.thu[1].includes(input);
-      } else if (step === 2) {
-        const input = document.getElementById('ans-thu-2') ? document.getElementById('ans-thu-2').value.trim() : "";
-        saveInputValue('ans-thu-2');
-        isCorrect = WEEKLY_ANSWERS.thu[2].includes(input);
-      } else if (step === 3) {
-        const input1 = document.getElementById('ans-thu-3-1') ? document.getElementById('ans-thu-3-1').value.trim() : "";
-        const input2 = document.getElementById('ans-thu-3-2') ? document.getElementById('ans-thu-3-2').value.trim() : "";
-        saveInputValue('ans-thu-3-1');
-        saveInputValue('ans-thu-3-2');
-        isCorrect = WEEKLY_ANSWERS.thu[301].includes(input1) && WEEKLY_ANSWERS.thu[302].includes(input2);
-      } else if (step === 4) {
-        const input = document.getElementById('ans-thu-4') ? document.getElementById('ans-thu-4').value.trim() : "";
-        saveInputValue('ans-thu-4');
-        isCorrect = WEEKLY_ANSWERS.thu[4].includes(input);
+      if (step >= 1 && step <= 4) {
+        const input = document.getElementById(`ans-thu-${step}`) ? document.getElementById(`ans-thu-${step}`).value.trim() : "";
+        saveInputValue(`ans-thu-${step}`);
+        isCorrect = WEEKLY_ANSWERS.thu[step].includes(input);
       } else if (step === 5) {
         const text = document.getElementById('ans-thu-5') ? document.getElementById('ans-thu-5').value.trim() : "";
         saveInputValue('ans-thu-5');
         daySolvedState.thu[5] = text.length >= 3;
-        safeSetStorage('kt16_day_solved_state', daySolvedState);
+        safeSetStorage('kt17_day_solved_state', daySolvedState);
         return;
       }
 
@@ -1339,12 +1302,12 @@
         }
       }
 
-      safeSetStorage('kt16_day_solved_state', daySolvedState);
+      safeSetStorage('kt17_day_solved_state', daySolvedState);
     }
 
     function selectFriQuiz(questionNum, optionNum) {
       friSelectedChoices[questionNum] = optionNum;
-      safeSetStorage('kt16_fri_selected', friSelectedChoices);
+      safeSetStorage('kt17_fri_selected', friSelectedChoices);
 
       if (questionNum === 1) {
         const btn1 = document.getElementById('fri-btn-1-1');
@@ -1368,21 +1331,21 @@
       }
 
       daySolvedState.fri[questionNum] = (optionNum !== null);
-      safeSetStorage('kt16_day_solved_state', daySolvedState);
+      safeSetStorage('kt17_day_solved_state', daySolvedState);
     }
 
     function checkFriSubjective() {
       const text = document.getElementById('ans-fri-5') ? document.getElementById('ans-fri-5').value.trim() : "";
       saveInputValue('ans-fri-5');
       daySolvedState.fri[5] = text.length >= 3;
-      safeSetStorage('kt16_day_solved_state', daySolvedState);
+      safeSetStorage('kt17_day_solved_state', daySolvedState);
     }
 
     function revealCorrect(day, step, showToast = true) {
       if (daySolvedState[day][step]) return;
       
       daySolvedState[day][step] = true;
-      safeSetStorage('kt16_day_solved_state', daySolvedState);
+      safeSetStorage('kt17_day_solved_state', daySolvedState);
       
       const badge = document.getElementById(`badge-${day}-${step}`);
       if (badge) {
@@ -1530,7 +1493,7 @@
 
       if (currentDay === 'mon') {
         if (repStageBadge) repStageBadge.textContent = "월요일 큐티 완료";
-        if (repTitle) repTitle.textContent = "1단계: 아람 장군 나아만과 어린 소녀의 소식";
+        if (repTitle) repTitle.textContent = "1단계: 앗수르의 침략과 랍사게의 조롱";
 
         const a1 = document.getElementById('ans-mon-1') ? document.getElementById('ans-mon-1').value.trim() : "";
         const a2 = document.getElementById('ans-mon-2') ? document.getElementById('ans-mon-2').value.trim() : "";
@@ -1538,29 +1501,28 @@
         const a4 = document.getElementById('ans-mon-4') ? document.getElementById('ans-mon-4').value.trim() : "";
         const a5 = document.getElementById('ans-mon-5') ? document.getElementById('ans-mon-5').value.trim() : "";
 
-        injectReportItem(1, "나아만 장군의 치명적 문제", a1);
-        injectReportItem(2, "포로 소녀가 제안한 인물", a2);
-        injectReportItem(3, "편지를 받은 이스라엘 왕의 고백", a3);
-        injectReportItem(4, "엘리사의 담대한 선언", a4);
-        injectReportItem(5, "주변 친구에게 전할 소녀의 한 마디", a5, true);
+        injectReportItem(1, "유다 성읍을 침략한 앗수르 왕", a1);
+        injectReportItem(2, "랍사게가 속지 말라고 조롱한 구원자", a2);
+        injectReportItem(3, "하나님을 깎아내린 비교 대상", a3);
+        injectReportItem(4, "협박 편지를 받은 히스기야의 반응", a4);
+        injectReportItem(5, "하나님 앞에 솔직히 펴놓고 기도할 나의 고민", a5, true);
       }
 
       else if (currentDay === 'tue') {
         if (repStageBadge) repStageBadge.textContent = "화요일 큐티 완료";
-        if (repTitle) repTitle.textContent = "2단계: 자존심을 꺾은 나아만의 순종";
+        if (repTitle) repTitle.textContent = "2단계: 하나님의 응답과 하룻밤의 승리";
 
-        const a1_1 = document.getElementById('ans-tue-1-1') ? document.getElementById('ans-tue-1-1').value.trim() : "";
-        const a1_2 = document.getElementById('ans-tue-1-2') ? document.getElementById('ans-tue-1-2').value.trim() : "";
+        const a1 = document.getElementById('ans-tue-1') ? document.getElementById('ans-tue-1').value.trim() : "";
         const a2 = document.getElementById('ans-tue-2') ? document.getElementById('ans-tue-2').value.trim() : "";
         const a3 = document.getElementById('ans-tue-3') ? document.getElementById('ans-tue-3').value.trim() : "";
         const a4 = document.getElementById('ans-tue-4') ? document.getElementById('ans-tue-4').value.trim() : "";
         const a5 = document.getElementById('ans-tue-5') ? document.getElementById('ans-tue-5').value.trim() : "";
 
-        injectReportItem(1, "엘리사 선지자의 간단한 처방", `장소: ${a1_1} / 횟수: ${a1_2}번`);
-        injectReportItem(2, "나아만이 처음에 분노했던 이유", a2);
-        injectReportItem(3, "나아만이 치유받게 된 결정적 태도", a3);
-        injectReportItem(4, "치유 후 나아만의 유일신 고백", a4);
-        injectReportItem(5, "내가 지금 당장 내려놓을 나의 생각과 고집", a5, true);
+        injectReportItem(1, "히스기야 기도의 최종 목적", a1);
+        injectReportItem(2, "하나님이 예루살렘을 향해 주신 약속", a2);
+        injectReportItem(3, "앗수르 대군을 하룻밤에 물리친 주체", a3);
+        injectReportItem(4, "교만했던 앗수르 왕 산헤립의 최후", a4);
+        injectReportItem(5, "세상의 조롱 앞에서도 믿음을 지키기 위한 다짐", a5, true);
       }
 
       else if (currentDay === 'wed') {
@@ -1568,25 +1530,24 @@
         if (repTitle) repTitle.textContent = "3단계: 킹덤 리딩 칼럼 묵상";
 
         const reflex = document.getElementById('ans-wed-reflex') ? document.getElementById('ans-wed-reflex').value.trim() : "";
-        injectReportItem("📖", "나아만 치유와 어린 소녀 복음 성찰 고백", reflex, true);
+        injectReportItem("📖", "문제를 하나님 앞에 펴놓는 성숙한 킹덤틴즈의 고백", reflex, true);
       }
 
       else if (currentDay === 'thu') {
         if (repStageBadge) repStageBadge.textContent = "목요일 큐티 완료";
-        if (repTitle) repTitle.textContent = "4단계: 하나님 나라 관점";
+        if (repTitle) repTitle.textContent = "4단계: 하나님 나라 관점 (기도)";
 
         const a1 = document.getElementById('ans-thu-1') ? document.getElementById('ans-thu-1').value.trim() : "";
         const a2 = document.getElementById('ans-thu-2') ? document.getElementById('ans-thu-2').value.trim() : "";
-        const a3_1 = document.getElementById('ans-thu-3-1') ? document.getElementById('ans-thu-3-1').value.trim() : "";
-        const a3_2 = document.getElementById('ans-thu-3-2') ? document.getElementById('ans-thu-3-2').value.trim() : "";
+        const a3 = document.getElementById('ans-thu-3') ? document.getElementById('ans-thu-3').value.trim() : "";
         const a4 = document.getElementById('ans-thu-4') ? document.getElementById('ans-thu-4').value.trim() : "";
         const a5 = document.getElementById('ans-thu-5') ? document.getElementById('ans-thu-5').value.trim() : "";
 
-        injectReportItem(1, "복음을 전하는 데 하나님이 사용하신 사람", a1);
-        injectReportItem(2, "하나님 은혜와 다스림의 미치는 범위", a2);
-        injectReportItem(3, "나아만이 버려야 했던 것과 가져야 했던 태도", `버릴 것: ${a3_1} / 가질 태도: ${a3_2}`);
-        injectReportItem(4, "나아만의 변화가 보여주는 오늘날 교회의 모습", a4);
-        injectReportItem(5, "대교리문답 60문 묵상: 복음 전파의 필요성", a5, true);
+        injectReportItem(1, "랍사게의 조롱이 가리킨 실제 대상", a1);
+        injectReportItem(2, "히스기야가 가장 먼저 구원을 요청한 분", a2);
+        injectReportItem(3, "이스라엘을 직접 구원하신 참된 왕", a3);
+        injectReportItem(4, "하나님이 구원을 베푸신 언약적 이유", a4);
+        injectReportItem(5, "소교리문답 56문: 하나님의 이름이 조롱당할 때 나의 기도", a5, true);
       }
 
       else if (currentDay === 'fri') {
@@ -1594,16 +1555,16 @@
         if (repTitle) repTitle.textContent = "5단계: 킹덤 최종 퀴즈 성적표";
 
         const selected_1 = friSelectedChoices[1] === 2 ? "X 응답 (정답)" : "O 응답";
-        const selected_2 = friSelectedChoices[2] === 3 ? "③ 포로 이스라엘 소녀 (정답)" : `선택: ${friSelectedChoices[2]}번`;
-        const selected_3 = friSelectedChoices[3] === 4 ? "④ 자기 생각과 너무 달라서 (정답)" : `선택: ${friSelectedChoices[3]}번`;
-        const selected_4 = friSelectedChoices[4] === 3 ? "③ 온 천하에 참 신이 없다고 고백 (정답)" : `선택: ${friSelectedChoices[4]}번`;
+        const selected_2 = friSelectedChoices[2] === 3 ? "③ 여호와가 구원한다는 말에 속지 말라 (정답)" : `선택: ${friSelectedChoices[2]}번`;
+        const selected_3 = friSelectedChoices[3] === 4 ? "④ 성전에 올라가 편지를 여호와 앞에 펴놓고 기도함 (정답)" : `선택: ${friSelectedChoices[3]}번`;
+        const selected_4 = friSelectedChoices[4] === 3 ? "③ 하나님의 이름이 모독당함에 마음 아파하며 기도함 (정답)" : `선택: ${friSelectedChoices[4]}번`;
         const subjectiveText = document.getElementById('ans-fri-5') ? document.getElementById('ans-fri-5').value.trim() : "";
 
-        injectReportItem(1, "Q1. 권력과 재물로 치유를 샀는지 여부", selected_1);
-        injectReportItem(2, "Q2. 처음에 복음을 전해준 사람", selected_2);
-        injectReportItem(3, "Q3. 나아만이 분노하여 돌아가려 한 이유", selected_3);
-        injectReportItem(4, "Q4. 몸을 씻은 후 나아만의 가장 큰 변화", selected_4);
-        injectReportItem("💬", "착하게 살면 구원받는다는 지민이에게 전하는 복음 카드", subjectiveText, true);
+        injectReportItem(1, "Q1. 히스기야가 애굽에 군대를 요청했는지 여부", selected_1);
+        injectReportItem(2, "Q2. 랍사게 조롱의 핵심 내용", selected_2);
+        injectReportItem(3, "Q3. 협박 편지를 받은 히스기야의 올바른 행동", selected_3);
+        injectReportItem(4, "Q4. 교회가 모욕당할 때 우리가 품을 바른 태도", selected_4);
+        injectReportItem("💬", "신앙을 무시하는 친구 앞에서의 믿음과 SOS 기도", subjectiveText, true);
       }
 
       const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'short' };
@@ -1619,7 +1580,7 @@
       else if (currentDay === 'thu' && !unlockedDays.fri) { unlockedDays.fri = true; newlyUnlocked = '금요일(5단계)'; }
 
       if (newlyUnlocked) {
-        safeSetStorage('kt16_unlocked_days', unlockedDays);
+        safeSetStorage('kt17_unlocked_days', unlockedDays);
         renderDayTabs();
         showNotification(`🎉 훌륭합니다! 오늘의 고백이 저장되어 <strong>[${newlyUnlocked}]</strong> 단계가 활성화되었습니다!`);
       }
@@ -1674,18 +1635,18 @@
 
     function confirmResetProgress() {
       try {
-        localStorage.removeItem('kt16_unlocked_days');
-        localStorage.removeItem('kt16_day_solved_state');
-        localStorage.removeItem('kt16_fri_selected');
+        localStorage.removeItem('kt17_unlocked_days');
+        localStorage.removeItem('kt17_day_solved_state');
+        localStorage.removeItem('kt17_fri_selected');
         
         const inputsToClear = [
           'ans-mon-1', 'ans-mon-2', 'ans-mon-3', 'ans-mon-4', 'ans-mon-5',
-          'ans-tue-1-1', 'ans-tue-1-2', 'ans-tue-2', 'ans-tue-3', 'ans-tue-4', 'ans-tue-5',
+          'ans-tue-1', 'ans-tue-2', 'ans-tue-3', 'ans-tue-4', 'ans-tue-5',
           'ans-wed-reflex',
-          'ans-thu-1', 'ans-thu-2', 'ans-thu-3-1', 'ans-thu-3-2', 'ans-thu-4', 'ans-thu-5',
+          'ans-thu-1', 'ans-thu-2', 'ans-thu-3', 'ans-thu-4', 'ans-thu-5',
           'ans-fri-5'
         ];
-        inputsToClear.forEach(id => localStorage.removeItem(`kt16_input_${id}`));
+        inputsToClear.forEach(id => localStorage.removeItem(`kt17_input_${id}`));
       } catch(e) {}
       location.reload();
     }
@@ -1706,7 +1667,7 @@
         const link = document.createElement('a');
         const todayStr = new Date().toISOString().slice(0,10);
         
-        link.download = `킹덤틴즈_16과_리포트_${currentDay.toUpperCase()}_${todayStr}.png`;
+        link.download = `킹덤틴즈_17과_리포트_${currentDay.toUpperCase()}_${todayStr}.png`;
         link.href = image;
         link.click();
         
